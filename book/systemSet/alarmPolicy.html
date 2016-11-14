@@ -1,0 +1,660 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="keywords" content="端到端应用性能管理,Application Insight,OneAPM Ai">
+<meta name="description" content="OneAPM Application Insight是一个真实可见的应用性能监控系统，从用户体验到网络服务，直至应用代码, 帮助您完成端到端的应用性能管理，OneAPM Ai通过 Apdex、报警、错误率让您了解应用性能对用户使用体验的影响，从而挖掘应用可优化的范围">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>Application Insight 文档</title>
+
+  <script type="text/javascript">
+    // if (window.location.hostname === 'www.oneapm.com') {
+    //   var pathnameSegs = window.location.pathname.split("/docs/ci");
+    //   var realPathname = pathnameSegs[pathnameSegs.length - 1];
+    //   window.location.href = 'http://101.200.76.159:4567' + realPathname;
+    // } else if (window.location.hostname !== 'docs-ci.oneapm.com') {
+    //   window.location.href = 'http://101.200.76.159:4567' + window.location.pathname;
+    // }
+  </script>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?dc7d70374ed3b2f6ce76527be8b9c93a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+<!-- growingio -->
+<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'a78f5e02538f4b2b88cd4fee708bc11b']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+
+
+<link href="/stylesheets/site.css" rel="stylesheet" />
+<script src="/javascripts/jquery-2.2.1.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/all.js"></script>
+<style media="screen">
+  .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+.highlight .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #6c8b9f;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #b2fd6d;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .gr {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .k, .highlight .kd, .highlight .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+.highlight .o, .highlight .ow {
+  color: #4df4ff;
+}
+.highlight .p, .highlight .pi {
+  color: #4df4ff;
+}
+.highlight .gd {
+  color: #cc0000;
+}
+.highlight .gi {
+  color: #b2fd6d;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gt {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .kc {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nc {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .s, .highlight .sb, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .sr, .highlight .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+.highlight .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .nb {
+  font-weight: bold;
+}
+.highlight .ni {
+  color: #999999;
+  font-weight: bold;
+}
+.highlight .w {
+  color: #BBBBBB;
+}
+.highlight .nf {
+  color: #a8e1fe;
+}
+.highlight .py {
+  color: #a8e1fe;
+}
+.highlight .na {
+  color: #a8e1fe;
+}
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+</style>
+
+  </head>
+
+  <body class="page-book book_systemSet book_systemSet_alarmPolicy">
+      <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56334895-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+<header class="main-header clearfix">
+	<div class="main-navblock col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><div>
+			<a href="../index.html" class="logo-container">
+				<div class="oneapm-logo"></div>
+			</a>
+		</div>
+		<a href="#" class="burger-wrapper">
+			<div class="burger"></div>
+		</a>
+		<div class="nav-container">
+			<ul class="nav-list">
+				<li>
+					<a href="/quick-start/">快速入门</a>
+				</li>
+				<li>
+					<a href="/book/">功能说明</a>
+				</li>
+				<li>
+					<a href="/agent/">安装指南</a>
+				</li>
+				<li>
+					<a href="/qa/">常见问题</a>
+				</li>
+				<li>
+					<a href="/Api/">API</a>
+				</li>
+				<li>
+					<a href="/contact/contact.html">联系我们</a>
+				</li>
+			</ul>
+			<ul class="login-list">
+				<li>
+					<a href="http://user.oneapm.com/pages/v2/login" class="btn outline-dark" id="loginIn">登录</a>
+				</li>
+				<li>
+					<a href="https://user.oneapm.com/pages/v2/signup" class="btn inside-yellow" id="signUp">注册</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+<!--<div class="flagInfo clearfix">
+    <div class="flag-left"></div>
+    <div class="flag-right">Cloudinsight Agent 在 4.7.0 版本，将 Agent 名称从 oneapm-ci-agent 更换至 cloudinsight-agent。若您在使用过程中，出现无法正常工作的情况，请加入售后群：433349863</div>
+    <span class="cl">X</span>
+</div>-->
+<script type="text/javascript">
+	$(function () {
+		var key=window.location.pathname;
+		var arr5=['agent','api','cloud-integration','services','services_example'];
+		var arr1=['quick-start'];
+		var arr3=['release-note','platform','dashboard','metric','alert','event'];
+		var arr4=['use-case','best-practise'];
+		var arr2=['qa'];
+		var Arr=[arr1,arr2,arr3,arr4,arr5];
+		for(var i=0;i<6;i++) {
+			$.each(Arr[i], function (e, a) {
+				if (key.indexOf(a) !== -1) {
+					switch (i + 1) {
+						case 1:
+							key = '/quick-start/';
+							break;
+						case 5:
+							key = '/agent/';
+							break;
+						case 3:
+							key = '/platform/';
+							break;
+						case 4:
+							key = '/best-practise/';
+							break;
+						case 2:
+							key = '/qa/';
+							break;
+					}
+				}
+			});
+		}
+		var keyInfo="'"+key+"'";
+		var panelHead;
+			panelHead= $(".nav-container  a[href="+keyInfo+"]");
+			panelHead.addClass('show');
+	});
+</script>
+
+
+    <div class="page-container">
+      <div class="row">
+        <div class="col-xs-3 page-sidebar hidden-sm hidden-xs">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a href="/book/monitor/monitor_index.html" role="button">
+          监控
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/monitor/monitor_overview.html">总览</a></li>
+          <li><a href="/book/monitor/monitor_map.html">拓扑</a></li>
+          <li><a href="/book/monitor/monitor_webTransaction.html">web 事务</a></li>
+          <li><a href="/book/monitor/monitor_dataBase.html">数据库</a></li>
+          <li><a href="/book/monitor/monitor_external.html">外部服务</a></li>
+          <li><a href="/book/monitor/monitor_bgTask.html">后台任务</a></li>
+          <li><a href="/book/monitor/monitor_jvm.html">JVM</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/event/event_index.html" class="collapsed">
+          事件
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/event/event_errorInfo.html">错误信息</a></li>
+          <li><a href="/book/event/event_performanceProfiling.html">性能剖析</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/report/report_index.html" class="collapsed">
+         报表
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/report/report_webTransaction.html">web 事务</a></li>
+          <li><a href="/book/report/report_dataBase.html">数据库</a></li>
+          <li><a href="/book/report/report_jvm.html">JVM</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/setting/setting_index.html" class="collapsed">
+          设置
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/setting/setting_serverEnvironment.html">服务器环境</a></li>
+          <li><a href="/book/setting/setting_applicationSet.html">应用设置</a></li>
+          <li><a href="/book/setting/setting_customTransaction.html">自定义事务</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/keyTransaction/keyTransaction_index.html" class="collapsed">
+          关键事务
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/keyTransaction/keyTransaction_overview.html">总览</a></li>
+          <li><a href="/book/keyTransaction/keyTransaction_map.html">拓扑</a></li>
+          <li><a href="/book/keyTransaction/keyTransaction_performanceprofiling.html">性能剖析</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/systemSet/systemSet_index.html" class="collapsed">
+            报警设置
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/systemSet/account.html">账号管理</a></li>
+          <li><a href="/book/systemSet/alarmPolicy.html">报警策略</a></li>
+           <li><a href="/book/systemSet/alarmPolicy02.html">报警记录</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <div class="col-xs-9 page-body">
+          <div class="body-box">
+            <h1>报警策略－应用程序</h1>
+
+<ul>
+<li><p>在应用程序的报警策略页面，可以设置应用的报警策略，当应用的性能指标出现异常时，Ai 会触发报警策略通知用户，使用户能对应用的性能进行实时的监控（根据 Apdex、错误率和是否宕机来设置报警阈值）。<br></p></li>
+<li><p>该页面主要有报警策略、创建报警策略按钮这 2 个部分。<br></p></li>
+</ul>
+
+<p><strong>报警策略：</strong><br></p>
+
+<ul>
+<li>每一个报警策略，都分为 4 个模块：策略名称; 策略操作，包括禁用（禁用后可以启用）、删除、修改等操作; 策略报警条件，包括 Apdex 报警阈值、错误率报警阈值、是否开启宕机报警; 通知用户，包括需要通知的账号、通知方式。<br>
+<img src="/images/aisystemset_aialarm01.png" alt="Aisystemset aialarm01" /></li>
+</ul>
+
+<p><strong>创建报警策略：</strong><br></p>
+
+<ul>
+<li><p>点击“创建报警策略”，通过填写策略名称，并且配置报警策略的各项阈值，可增加报警策略。</p></li>
+<li><p>关于如何配置报警策略的各项指标，将在后面进行介绍。</p></li>
+</ul>
+
+<p><strong>报警策略的设置</strong><br></p>
+
+<ul>
+<li>点击报警策略的“编辑”小图标，会展示当前报警策略的配置窗口。</li>
+</ul>
+
+<p><strong>报警策略：</strong><br></p>
+
+<ul>
+<li>配置报警策略时，除了最开始新增报警策略，不能再修改报警策略的名称。</li>
+</ul>
+
+<p><strong>配置“严重问题”、“告警问题”、“宕机”三类问题的报警阈值：</strong><br></p>
+
+<ul>
+<li>告警问题——标黄部分，默认为“当 10 分钟内性能指数低于 0.85，或者 10 分钟内平均错误率高于 1%，则触发告警问题通知”（参数均可以自行调整）</li>
+<li>严重问题——标红部分，默认为“当 5 分钟内性能指数低于 0.7，或者 3 分钟内平均错误率高于 5%，则触发严重问题通知“（参数均可以自行调整）</li>
+<li>宕机问题——默认勾选，“当 3 分钟内没有数据返回时，则认为虚拟机宕机，触发宕机问题通知”（参数不能调整，只能选择是否开启宕机问题通知）</li>
+</ul>
+
+<p><strong>选择应用：</strong><br></p>
+
+<ul>
+<li><p>选择使用当前策略实现报警的应用时，在“应用名称”栏，点击“分配策略”，则会出现应用列表，同时展示各个应用的 agent。通过勾选 agent，可以使这些 agent 按照当前报警策略的设置，进行问题报警。（1 个 agent，只能在某一个报警策略中被勾选。在为其他报警策略分配应用时，该 agent 不会再出现于列表中。）</p></li>
+<li><p>分配应用时，是以 agent 为基本单位来进行勾选。也就是说，如果一个应用有多个 agent，原则上，用户可以为该应用的不同 agent 设置不同的报警策略。然而，这样会影响 Ai 监控应用的整体性能。我们不建议用户这样操作。<br>
+<img src="/images/aisystemset_aialarm02.png" alt="Aisystemset aialarm02" /></p></li>
+</ul>
+
+<p><strong>通知方式：</strong><br></p>
+
+<ul>
+<li>选择通知方式时，可选择邮件、短信的任意组合。默认不进行通知。</li>
+</ul>
+
+<p><strong>通知方式：</strong><br></p>
+
+<ul>
+<li>选择使用当前策略进行通知时，在“用户管理”栏，点击“管理用户”，则会出现账户列表。通过勾选账户，可以使这些账户按照当前报警策略的设置，接收报警通知。（1 个账户，可以同时接收多个策略的报警通知。）</li>
+</ul>
+
+<h1>报警策略-关键事务</h1>
+
+<ul>
+<li><p>在关键事务的报警策略页面，可以设置关键事务的报警策略。当关键事务的性能出现异常时，Ai 会触发报警策略通知用户，使用户能对关键事务的性能进行实时的监控（根据 Apdex、错误率来设置报警阈值）。</p></li>
+<li><p>该页面与应用程序的报警策略页面一样，主要有报警策略、创建报警策略按钮这 2 个部分。</p></li>
+</ul>
+
+<p><strong>报警策略：</strong><br></p>
+
+<ul>
+<li>每一个报警策略，都分为 4 个模块：策略名称;策略操作，包括禁用（禁用后可以启用）、删除、修改等操作;策略报警条件，包括 Apdex 报警阈值、错误率报警阈值; 通知用户，包括需要通知的账号、通知方式。
+<img src="/images/aialarm_keytransaction01.png" alt="Aialarm keytransaction01" /></li>
+</ul>
+
+<p><strong>创建报警策略：</strong><br></p>
+
+<ul>
+<li>点击“创建报警策略”，通过填写策略名称，并且配置报警策略的各项阈值，可增加报警策略。</li>
+<li>关于如何配置报警策略的各项指标，将在后面进行介绍。</li>
+</ul>
+
+<p><strong>关键事务报警策略的设置</strong><br></p>
+
+<ul>
+<li>点击报警策略的“编辑”小图标，会展示当前报警策略的配置窗口。</li>
+</ul>
+
+<p><strong>报警策略：</strong><br></p>
+
+<ul>
+<li>配置报警策略时，除了最开始新增报警策略，不能再修改报警策略的名称。</li>
+<li>配置“严重问题”、“告警问题”、“宕机”三类问题的报警阈值：
+
+<ul>
+<li>告警问题——标黄部分，默认为“当 10 分钟内性能指数低于 0.85，或者 10 分钟内平均错误率高于 1%，则触发告警问题通知”（参数均可以自行调整）</li>
+<li>严重问题——标红部分，默认为“当 5 分钟内性能指数低于 0.7，或者 3 分钟内平均错误率高于 5%，则触发严重问题通知“（参数均可以自行调整）</li>
+<li>宕机—— JVM 停止运行；</li>
+</ul></li>
+</ul>
+
+<p><strong>选择关键事务：</strong><br></p>
+
+<ul>
+<li>选择使用当前策略实现报警的关键事务时，在“关键事务”栏，点击“分配策略”，则会出现关键事务列表。通过勾选，可以使被勾选的关键事务按照当前报警策略的设置，进行问题报警。（1 个关键事务，只能在某一个报警策略中被勾选。在为其他报警策略分配关键事务时，该关键事务不会再出现于列表中。）
+<img src="/images/aialarm_keytransaction02.png" alt="Aialarm keytransaction02" /></li>
+</ul>
+
+<p><strong>通知方式：</strong><br></p>
+
+<ul>
+<li><p>选择通知方式时，可选择邮件、短信的任意组合。默认不进行通知。</p></li>
+<li><p>选择使用当前策略进行通知时，在“用户管理”栏，点击“管理用户”，则会出现账户列表。通过勾选账户，可以使这些账户按照当前报警策略的设置，接收报警通知。 （1 个账户，可以同时接收多个策略的报警通知。）</p></li>
+</ul>
+
+            <!--<hr style="margin-top: 50px;" />
+<div class="alert alert-warning" style="text-align:center; margin: 40px 0px;">
+  <p style="font-size: 16px;">
+    如果您对 AI 感兴趣，可以选择试用我们的产品，只需要点击下面的按钮免费注册即可。
+  </p>
+  <br />
+  <p>
+    <a href="https://user.oneapm.com/account/register.do?ref=https://cloud.oneapm.com&from=ci-docs" class="btn btn-info btn-lg" target="_blank">
+      立即注册 AI
+    </a>
+  </p>
+</div>
+<hr />
+<!-多说评论框 start -->
+<!--<div class="ds-thread"
+     id="ds-thread"
+     data-thread-key=""
+     data-title=""
+   data-url=""></div>
+<!-多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<!--<script type="text/javascript">
+  var titleTag = document.getElementsByTagName("h1")[0];
+
+  if (titleTag) {
+    title = document.getElementsByTagName("h1")[0].innerText;
+  } else {
+    title = "";
+  }
+
+  var duoshuoTag = document.getElementById('ds-thread');
+  duoshuoTag.setAttribute('data-thread-key', title.replace(/\s/g, ''));
+  duoshuoTag.setAttribute('data-title', title);
+
+  var duoshuoQuery = {short_name:"docs-ci"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>-->
+<!-- 多说公共JS代码 end -->
+
+
+            <div class="return"></div>
+          </div>
+          <div class="footer-in">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+      $(function() {
+        // $(".navbar-default .navbar-nav a[href='/agent/']").parent().addClass("active");
+        (function () {
+            $('.panel-default').mouseenter(function () {
+              if(!$(this).hasClass('active')){
+                $(this).children().addClass('in');
+              }
+            });
+            $('.panel-default').mouseleave(function () {
+              if(!$(this).hasClass('active')) {
+                $(this).children().removeClass('in');
+              }
+            });
+            var key=window.location.pathname;
+            var keyInfo="'"+key+"'";
+            var panelHead;
+            if(keyInfo.indexOf('index') !== -1){
+              panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent();
+              panelHead.siblings().addClass('in');
+              panelHead.parent().siblings('div').map(function () {
+                $(this).removeClass('active');
+              });
+              panelHead.parent().addClass('active');
+            }else if(keyInfo.indexOf('.') <0) {
+              keyInfo="'"+key+"book_index.html"+"'";
+              panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent();
+              panelHead.siblings().addClass('in');
+              panelHead.parent().siblings('div').map(function () {
+                $(this).removeClass('active');
+              });
+              panelHead.parent().addClass('active');
+            }else {
+                panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent().parent().parent();
+                panelHead.addClass('in');
+                panelHead.parent().siblings('div').map(function () {
+                  $(this).removeClass('active');
+                });
+                panelHead.parent().addClass('active');
+              }
+          })();
+      });
+    </script>
+  </body>
+</html>

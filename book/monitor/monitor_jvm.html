@@ -1,0 +1,665 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="keywords" content="端到端应用性能管理,Application Insight,OneAPM Ai">
+<meta name="description" content="OneAPM Application Insight是一个真实可见的应用性能监控系统，从用户体验到网络服务，直至应用代码, 帮助您完成端到端的应用性能管理，OneAPM Ai通过 Apdex、报警、错误率让您了解应用性能对用户使用体验的影响，从而挖掘应用可优化的范围">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>Application Insight 文档</title>
+
+  <script type="text/javascript">
+    // if (window.location.hostname === 'www.oneapm.com') {
+    //   var pathnameSegs = window.location.pathname.split("/docs/ci");
+    //   var realPathname = pathnameSegs[pathnameSegs.length - 1];
+    //   window.location.href = 'http://101.200.76.159:4567' + realPathname;
+    // } else if (window.location.hostname !== 'docs-ci.oneapm.com') {
+    //   window.location.href = 'http://101.200.76.159:4567' + window.location.pathname;
+    // }
+  </script>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?dc7d70374ed3b2f6ce76527be8b9c93a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+<!-- growingio -->
+<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'a78f5e02538f4b2b88cd4fee708bc11b']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+
+
+<link href="/stylesheets/site.css" rel="stylesheet" />
+<script src="/javascripts/jquery-2.2.1.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/all.js"></script>
+<style media="screen">
+  .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+.highlight .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #6c8b9f;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #b2fd6d;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .gr {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .k, .highlight .kd, .highlight .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+.highlight .o, .highlight .ow {
+  color: #4df4ff;
+}
+.highlight .p, .highlight .pi {
+  color: #4df4ff;
+}
+.highlight .gd {
+  color: #cc0000;
+}
+.highlight .gi {
+  color: #b2fd6d;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gt {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .kc {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nc {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .s, .highlight .sb, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .sr, .highlight .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+.highlight .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .nb {
+  font-weight: bold;
+}
+.highlight .ni {
+  color: #999999;
+  font-weight: bold;
+}
+.highlight .w {
+  color: #BBBBBB;
+}
+.highlight .nf {
+  color: #a8e1fe;
+}
+.highlight .py {
+  color: #a8e1fe;
+}
+.highlight .na {
+  color: #a8e1fe;
+}
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+</style>
+
+  </head>
+
+  <body class="page-book book_monitor book_monitor_monitor_jvm">
+      <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56334895-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+<header class="main-header clearfix">
+	<div class="main-navblock col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><div>
+			<a href="../index.html" class="logo-container">
+				<div class="oneapm-logo"></div>
+			</a>
+		</div>
+		<a href="#" class="burger-wrapper">
+			<div class="burger"></div>
+		</a>
+		<div class="nav-container">
+			<ul class="nav-list">
+				<li>
+					<a href="/quick-start/">快速入门</a>
+				</li>
+				<li>
+					<a href="/book/">功能说明</a>
+				</li>
+				<li>
+					<a href="/agent/">安装指南</a>
+				</li>
+				<li>
+					<a href="/qa/">常见问题</a>
+				</li>
+				<li>
+					<a href="/Api/">API</a>
+				</li>
+				<li>
+					<a href="/contact/contact.html">联系我们</a>
+				</li>
+			</ul>
+			<ul class="login-list">
+				<li>
+					<a href="http://user.oneapm.com/pages/v2/login" class="btn outline-dark" id="loginIn">登录</a>
+				</li>
+				<li>
+					<a href="https://user.oneapm.com/pages/v2/signup" class="btn inside-yellow" id="signUp">注册</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+<!--<div class="flagInfo clearfix">
+    <div class="flag-left"></div>
+    <div class="flag-right">Cloudinsight Agent 在 4.7.0 版本，将 Agent 名称从 oneapm-ci-agent 更换至 cloudinsight-agent。若您在使用过程中，出现无法正常工作的情况，请加入售后群：433349863</div>
+    <span class="cl">X</span>
+</div>-->
+<script type="text/javascript">
+	$(function () {
+		var key=window.location.pathname;
+		var arr5=['agent','api','cloud-integration','services','services_example'];
+		var arr1=['quick-start'];
+		var arr3=['release-note','platform','dashboard','metric','alert','event'];
+		var arr4=['use-case','best-practise'];
+		var arr2=['qa'];
+		var Arr=[arr1,arr2,arr3,arr4,arr5];
+		for(var i=0;i<6;i++) {
+			$.each(Arr[i], function (e, a) {
+				if (key.indexOf(a) !== -1) {
+					switch (i + 1) {
+						case 1:
+							key = '/quick-start/';
+							break;
+						case 5:
+							key = '/agent/';
+							break;
+						case 3:
+							key = '/platform/';
+							break;
+						case 4:
+							key = '/best-practise/';
+							break;
+						case 2:
+							key = '/qa/';
+							break;
+					}
+				}
+			});
+		}
+		var keyInfo="'"+key+"'";
+		var panelHead;
+			panelHead= $(".nav-container  a[href="+keyInfo+"]");
+			panelHead.addClass('show');
+	});
+</script>
+
+
+    <div class="page-container">
+      <div class="row">
+        <div class="col-xs-3 page-sidebar hidden-sm hidden-xs">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a href="/book/monitor/monitor_index.html" role="button">
+          监控
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/monitor/monitor_overview.html">总览</a></li>
+          <li><a href="/book/monitor/monitor_map.html">拓扑</a></li>
+          <li><a href="/book/monitor/monitor_webTransaction.html">web 事务</a></li>
+          <li><a href="/book/monitor/monitor_dataBase.html">数据库</a></li>
+          <li><a href="/book/monitor/monitor_external.html">外部服务</a></li>
+          <li><a href="/book/monitor/monitor_bgTask.html">后台任务</a></li>
+          <li><a href="/book/monitor/monitor_jvm.html">JVM</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/event/event_index.html" class="collapsed">
+          事件
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/event/event_errorInfo.html">错误信息</a></li>
+          <li><a href="/book/event/event_performanceProfiling.html">性能剖析</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/report/report_index.html" class="collapsed">
+         报表
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/report/report_webTransaction.html">web 事务</a></li>
+          <li><a href="/book/report/report_dataBase.html">数据库</a></li>
+          <li><a href="/book/report/report_jvm.html">JVM</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/setting/setting_index.html" class="collapsed">
+          设置
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/setting/setting_serverEnvironment.html">服务器环境</a></li>
+          <li><a href="/book/setting/setting_applicationSet.html">应用设置</a></li>
+          <li><a href="/book/setting/setting_customTransaction.html">自定义事务</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/keyTransaction/keyTransaction_index.html" class="collapsed">
+          关键事务
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/keyTransaction/keyTransaction_overview.html">总览</a></li>
+          <li><a href="/book/keyTransaction/keyTransaction_map.html">拓扑</a></li>
+          <li><a href="/book/keyTransaction/keyTransaction_performanceprofiling.html">性能剖析</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/systemSet/systemSet_index.html" class="collapsed">
+            报警设置
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/systemSet/account.html">账号管理</a></li>
+          <li><a href="/book/systemSet/alarmPolicy.html">报警策略</a></li>
+           <li><a href="/book/systemSet/alarmPolicy02.html">报警记录</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <div class="col-xs-9 page-body">
+          <div class="body-box">
+            <h1>监控-JVM</h1>
+
+<p><strong>首先，为什么该功能模块有适用范围?</strong><br></p>
+
+<ul>
+<li>因为不同语言应用的运行环境有很大差异，所以该功能模块并不对所有应 用都有效。针对 Java 应用，该模块有效，并且名称为 JVMs;针对 Ruby 应用，该功能模块同样有效，并且名称为 RubyVM。针对其他语言的应用，该功能模块无法使用，所以 Ai 隐藏了相应模块，避免给用户造成误导。<br></li>
+<li>此处以 Java 应用的 JVMs 页面为例，展开相应的介绍。JVMs 页面共由 内存、线程、会话这 3 个部分组成。而不同的部分，都通过若干个图表，展示了应用的相关信息。<br></li>
+</ul>
+
+<p><strong>然而，什么是 JVM?</strong><br></p>
+
+<ul>
+<li>JVM，英文全称为 Java Virtual Machine，是指 Java 虚拟机。<br></li>
+</ul>
+
+<p><strong>第 1 部分——内存</strong><br></p>
+
+<ul>
+<li>在内存页面下，展示了 JVM 的内存、垃圾收集、类加载的相关信息。</li>
+</ul>
+
+<p><strong>然而，什么是 JVM 内存?</strong><br></p>
+
+<ul>
+<li>关于 JVM 内存的解如图：</li>
+</ul>
+
+<p><img src="/images/aimonitor_jvms001.png" alt="Aimonitor jvms001" /></p>
+
+<p><strong>第 2 部分——线程</strong><br></p>
+
+<ul>
+<li>在线程页面下，展示了 JVM 的线程数目随时间的变化情况，同时展示了各个线程池的 Max、Active、Idle 线程数目随时间的变化情况。<br></li>
+</ul>
+
+<p><strong>然而，什么是 JVM 线程?</strong><br></p>
+
+<ul>
+<li>关于 JVM 线程的解释，详见“术语解释-JVM” 线程。
+<img src="/images/aimonitor_jvms03.png" alt="Aimonitor jvms03" /></li>
+</ul>
+
+<p><strong>第 3 部分——会话</strong><br></p>
+
+<ul>
+<li>在会话页面，展示出该应用在运行时建立的各个会话的相关信息。</li>
+</ul>
+
+<p><strong>然而，什么是会话?</strong><br></p>
+
+<ul>
+<li>会话 (Session) 是指服务器与浏览器的建立的连接。关于会话的解释，详见 JVM 监控详细解释 - 会话。
+<img src="/images/aimonitor_jvms04.png" alt="Aimonitor jvms04" /></li>
+</ul>
+
+<h1>JVM 监控详细解释</h1>
+
+<p><strong>1.Java 内存</strong></p>
+
+<ul>
+<li><p>Java 的内存通常分为堆内存和非堆内存，堆内存由 Java 对象使用，非堆内存 则用于存放 JNI、Java 线程对象等非 Java 数据。示意图如下所示：
+<img src="/images/jvm-01.png" alt="Jvm 01" /></p></li>
+<li><p>堆内存结构如下所示：
+<img src="/images/jvm-02.png" alt="Jvm 02" /></p></li>
+<li><p>垃圾收集（Garbage collection）</p></li>
+<li><p>JVM Generational Collecting（分代）原理是这样的：把对象分为年青代（Young）、 年老代（Tenured）、持久代（Perm），对不同生命周期的对象使用不同的算法。（基于对对象生命周期分析）
+<img src="/images/jvm-03.png" alt="Jvm 03" /></p></li>
+<li><p>如上图所示，为 Java 堆中的各代分布：</p></li>
+<li><p><strong>1 Young（年轻代）</strong></p>
+
+<ul>
+<li>年轻代分三个区。一个 Eden 区，两个 Survivor 区。大部分对象在 Eden 区 中生成。幸存者 0 区（Survivor 0 space）和幸存者 1 区（Survivor1 space）： 当伊甸园的空间用完时，程序又需要创建对象;此时 JVM 的垃圾回收器将对 伊甸园区进行垃圾回收，将伊甸园区中的不再被其他对象所引用的对象进行销
+毁工作。同时将伊甸园中的还有其他对象引用的对象移动到幸存者 0 区。幸 存者 0 区就是用于存放伊甸园垃圾回收时所幸存下来的 JAVA 对象。当将伊 甸园中的还有其他对象引用的对象移动到幸存者 0 区时，如果幸存者 0 区也 没有空间来存放这些对象时，JVM 的垃圾回收器将对幸存者 0 区进行垃圾回 收处理，将幸存者 0 区中不在有其他对象引用的 JAVA 对象进行销毁，将幸存者 0 区中还有其他对象引用的对象移动到幸存者 1 区。幸存者 1 区的作 用就是用于存放幸存者 0 区垃圾回收处理所幸存下来的 JAVA 对象。</li>
+</ul></li>
+<li><p><strong>2 Tenured（年老代）</strong></p>
+
+<ul>
+<li>年老代存放从年轻代存活的对象。一般来说年老代存放的都是生命期较长的对象。</li>
+</ul></li>
+<li><p><strong>3 Perm（持久代）</strong></p>
+
+<ul>
+<li>用于存放静态文件，如今 Java 类、方法等。持久代对垃圾回收没有显著影响，但是有些应用可能动态生成或者调用一些 class，例如 Hibernate 等，在这种时候需要设置一个比较大的持久代空间来存放这些运行过程中新增的类。持久代大小通过-XX：MaxPermSize= 进行设置。</li>
+<li>举个例子：当在程序中生成对象时，正常对象会在年轻代中分配空间，如果是过大的对象也可能会直接在年老代生成（据观测在运行某程序时候每次会生成 一个十兆的 空间用收发消息，这部分内存就会直接在年老代分配）。年轻代 在空间被分配完的时候就会发起内存回收，大部分内存会被回收，一部分幸存 的内存会被拷贝至 Survivor 的 from 区，经过多次回收以后如果 from 区内存 也分配完毕，就会也发生内存回收然后将剩余的对象拷贝至 to 区。等到 to 区 也满的时候，就会再次发生内存回收然后把幸存的对象拷贝至年老区。
+通常我们说的 JVM 内存回收总是在指堆内存回收，确实只有堆中的内容是动态申请分配的，所以以上对象的年轻代和年老代都是指的 JVM 的 Heap 空间，而持久代则是之前提到的 Method Area，不属于 Heap。</li>
+</ul></li>
+<li><p><strong>Class count</strong></p></li>
+<li><p>Java 的运行时架构图如下：
+<img src="/images/jvm-04.png" alt="Jvm 04" /></p></li>
+<li><p>JVM 主要包括两个子系统和两个组件。两个子系统分别是 Class loader 子系统和 Execution engine（执行引擎）子系统; 两个组件分别是 Runtime data area （运行时数据区域）组件和 Native interface（本地接口）组件。</p></li>
+<li><p>Class loader 子系统的作用：根据给定的全限定名类名（如 java.lang.Object）来装载 class 文件的内容到 Runtime data area 中的 method area（方法区域）。Java 程序员可以 extends java.lang.ClassLoader 类来写自己的 Class loader。 Execution engine 子系统的作用：执行 classes 中的指令。任何 JVM specification 实现（JDK）的核心都是 Execution engine，不同的 JDK 例如 Sun 的 JDK 和 IBM 的 JDK 不同主要就取决于他们各自实现的 Execution engine 的不同。
+Native interface 组件：与 native libraries 交互，是其它编程语言交互的接口。 当调用 native 方法的时候，就进入了一个全新的并且不再受虚拟机限制的世界，所以也很容易出现 JVM 无法控制的 native heap OutOfMemory。</p></li>
+<li><p>Runtime Data Area 组件：这就是通常所说的 JVM 的内存了。它主要分为五个部分：</p>
+
+<ul>
+<li>1 Heap （堆）：一个 Java 虚拟实例中只存在一个堆空间。</li>
+<li>2 Method Area（方法区域）：被装载的 class 的信息存储在 Method area 的内存中。当虚拟机装载某个类型时，它使用类装载器定位相应的 class 文件，然后读入这个 class 文件内容并把它传输到虚拟机中。</li>
+<li>3 Java Stack（java 的栈）：虚拟机只会直接对 Java stack 执行两种操作：以帧为单位的压栈或出栈。</li>
+<li>4 Program Counter（程序计数器）：每一个线程都有它自己的 PC 寄存器，也是该线程启动时创建的。PC 寄存器的内容总是指向下一条将被执行指令的地址，这里的地址可以是一个本地指针，也可以是在方法区中相对应于该方法起始指令的偏移量。</li>
+<li>5 Native method stack（本地方法栈）：保存 native 方法进入区域的地址。</li>
+</ul></li>
+</ul>
+
+<p><strong>2.线程</strong></p>
+
+<ul>
+<li><p>线程，是程序运行的基本执行单元。当操作系统（不包括单线程的操作系统，如微软早期的 DOS）在执行一个程序时，会在系统中建立一个进程，而在这个进程中，必须至少建立一个线程（这个线程被称为主线程）来作为这个程序运行的入口点。因此，在操作系统中运行的任何程序都至少有一个主线程。</p></li>
+<li><p>进程和线程是现代操作系统中两个必不可少的运行模型。在操作系统中可以有多个进程，这些进程包括系统进程（由操作系统内部建立的进程）和用户进程（由用户程序建立的进程）;一个进程中可以有一个或多个线程。进程和进程之间不共享内存，也就是说系统中的进程是在各自独立的内存空间中运行的。而一个进程中的线可以共享系统分派给这个进程的内存空间。</p></li>
+<li><p>线程不仅可以共享进程的内存，而且还拥有一个属于自己的内存空间，这段内存空间也叫做线程栈，是在建立线程时由系统分配的，主要用来保存线程内部所使用的数据，如线程执行函数中所定义的变量。在操作系统将进程分成多个线程后，这些线程可以在操作系统的管理下并发执行，从而大大提高了程序的运行效率。</p></li>
+</ul>
+
+<p><strong>3.会话</strong></p>
+
+<ul>
+<li><p>会话（Session）的定义根据场景而有所不同：在 web 应用的用户看来，他打开浏览器访问一个电子商务网站，登录、并完成购物直到关闭浏览器，这是一个会话。</p></li>
+<li><p>而在 web 应用的开发者开来，用户登录时，需要创建一个数据结构以存储用户的登录信息，这个结构也是一个会话。
+会话，是用于解决 HTTP 协议自身无状态的方式之一，通过记录状态并将状态数据保存在服务端以实现。</p></li>
+<li><p>会话的典型应用场景，是用户登录某网站之后，将其登录信息放入会话，在以后的每次请求中，查询相应的登录信息以确保该用户合法;还有购物车等等经典场景。</p></li>
+</ul>
+
+            <!--<hr style="margin-top: 50px;" />
+<div class="alert alert-warning" style="text-align:center; margin: 40px 0px;">
+  <p style="font-size: 16px;">
+    如果您对 AI 感兴趣，可以选择试用我们的产品，只需要点击下面的按钮免费注册即可。
+  </p>
+  <br />
+  <p>
+    <a href="https://user.oneapm.com/account/register.do?ref=https://cloud.oneapm.com&from=ci-docs" class="btn btn-info btn-lg" target="_blank">
+      立即注册 AI
+    </a>
+  </p>
+</div>
+<hr />
+<!-多说评论框 start -->
+<!--<div class="ds-thread"
+     id="ds-thread"
+     data-thread-key=""
+     data-title=""
+   data-url=""></div>
+<!-多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<!--<script type="text/javascript">
+  var titleTag = document.getElementsByTagName("h1")[0];
+
+  if (titleTag) {
+    title = document.getElementsByTagName("h1")[0].innerText;
+  } else {
+    title = "";
+  }
+
+  var duoshuoTag = document.getElementById('ds-thread');
+  duoshuoTag.setAttribute('data-thread-key', title.replace(/\s/g, ''));
+  duoshuoTag.setAttribute('data-title', title);
+
+  var duoshuoQuery = {short_name:"docs-ci"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>-->
+<!-- 多说公共JS代码 end -->
+
+
+            <div class="return"></div>
+          </div>
+          <div class="footer-in">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+      $(function() {
+        // $(".navbar-default .navbar-nav a[href='/agent/']").parent().addClass("active");
+        (function () {
+            $('.panel-default').mouseenter(function () {
+              if(!$(this).hasClass('active')){
+                $(this).children().addClass('in');
+              }
+            });
+            $('.panel-default').mouseleave(function () {
+              if(!$(this).hasClass('active')) {
+                $(this).children().removeClass('in');
+              }
+            });
+            var key=window.location.pathname;
+            var keyInfo="'"+key+"'";
+            var panelHead;
+            if(keyInfo.indexOf('index') !== -1){
+              panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent();
+              panelHead.siblings().addClass('in');
+              panelHead.parent().siblings('div').map(function () {
+                $(this).removeClass('active');
+              });
+              panelHead.parent().addClass('active');
+            }else if(keyInfo.indexOf('.') <0) {
+              keyInfo="'"+key+"book_index.html"+"'";
+              panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent();
+              panelHead.siblings().addClass('in');
+              panelHead.parent().siblings('div').map(function () {
+                $(this).removeClass('active');
+              });
+              panelHead.parent().addClass('active');
+            }else {
+                panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent().parent().parent();
+                panelHead.addClass('in');
+                panelHead.parent().siblings('div').map(function () {
+                  $(this).removeClass('active');
+                });
+                panelHead.parent().addClass('active');
+              }
+          })();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,787 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="keywords" content="端到端应用性能管理,Application Insight,OneAPM Ai">
+<meta name="description" content="OneAPM Application Insight是一个真实可见的应用性能监控系统，从用户体验到网络服务，直至应用代码, 帮助您完成端到端的应用性能管理，OneAPM Ai通过 Apdex、报警、错误率让您了解应用性能对用户使用体验的影响，从而挖掘应用可优化的范围">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>Application Insight 文档</title>
+
+  <script type="text/javascript">
+    // if (window.location.hostname === 'www.oneapm.com') {
+    //   var pathnameSegs = window.location.pathname.split("/docs/ci");
+    //   var realPathname = pathnameSegs[pathnameSegs.length - 1];
+    //   window.location.href = 'http://101.200.76.159:4567' + realPathname;
+    // } else if (window.location.hostname !== 'docs-ci.oneapm.com') {
+    //   window.location.href = 'http://101.200.76.159:4567' + window.location.pathname;
+    // }
+  </script>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?dc7d70374ed3b2f6ce76527be8b9c93a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+<!-- growingio -->
+<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'a78f5e02538f4b2b88cd4fee708bc11b']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+
+
+<link href="/stylesheets/site.css" rel="stylesheet" />
+<script src="/javascripts/jquery-2.2.1.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/all.js"></script>
+<style media="screen">
+  .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+.highlight .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #6c8b9f;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #b2fd6d;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .gr {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .k, .highlight .kd, .highlight .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+.highlight .o, .highlight .ow {
+  color: #4df4ff;
+}
+.highlight .p, .highlight .pi {
+  color: #4df4ff;
+}
+.highlight .gd {
+  color: #cc0000;
+}
+.highlight .gi {
+  color: #b2fd6d;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gt {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .kc {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nc {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .s, .highlight .sb, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .sr, .highlight .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+.highlight .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .nb {
+  font-weight: bold;
+}
+.highlight .ni {
+  color: #999999;
+  font-weight: bold;
+}
+.highlight .w {
+  color: #BBBBBB;
+}
+.highlight .nf {
+  color: #a8e1fe;
+}
+.highlight .py {
+  color: #a8e1fe;
+}
+.highlight .na {
+  color: #a8e1fe;
+}
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+</style>
+
+  </head>
+
+  <body class="page-book book_monitor book_monitor_monitor_webTransaction">
+      <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56334895-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+<header class="main-header clearfix">
+	<div class="main-navblock col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"><div>
+			<a href="../index.html" class="logo-container">
+				<div class="oneapm-logo"></div>
+			</a>
+		</div>
+		<a href="#" class="burger-wrapper">
+			<div class="burger"></div>
+		</a>
+		<div class="nav-container">
+			<ul class="nav-list">
+				<li>
+					<a href="/quick-start/">快速入门</a>
+				</li>
+				<li>
+					<a href="/book/">功能说明</a>
+				</li>
+				<li>
+					<a href="/agent/">安装指南</a>
+				</li>
+				<li>
+					<a href="/qa/">常见问题</a>
+				</li>
+				<li>
+					<a href="/Api/">API</a>
+				</li>
+				<li>
+					<a href="/contact/contact.html">联系我们</a>
+				</li>
+			</ul>
+			<ul class="login-list">
+				<li>
+					<a href="http://user.oneapm.com/pages/v2/login" class="btn outline-dark" id="loginIn">登录</a>
+				</li>
+				<li>
+					<a href="https://user.oneapm.com/pages/v2/signup" class="btn inside-yellow" id="signUp">注册</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+<!--<div class="flagInfo clearfix">
+    <div class="flag-left"></div>
+    <div class="flag-right">Cloudinsight Agent 在 4.7.0 版本，将 Agent 名称从 oneapm-ci-agent 更换至 cloudinsight-agent。若您在使用过程中，出现无法正常工作的情况，请加入售后群：433349863</div>
+    <span class="cl">X</span>
+</div>-->
+<script type="text/javascript">
+	$(function () {
+		var key=window.location.pathname;
+		var arr5=['agent','api','cloud-integration','services','services_example'];
+		var arr1=['quick-start'];
+		var arr3=['release-note','platform','dashboard','metric','alert','event'];
+		var arr4=['use-case','best-practise'];
+		var arr2=['qa'];
+		var Arr=[arr1,arr2,arr3,arr4,arr5];
+		for(var i=0;i<6;i++) {
+			$.each(Arr[i], function (e, a) {
+				if (key.indexOf(a) !== -1) {
+					switch (i + 1) {
+						case 1:
+							key = '/quick-start/';
+							break;
+						case 5:
+							key = '/agent/';
+							break;
+						case 3:
+							key = '/platform/';
+							break;
+						case 4:
+							key = '/best-practise/';
+							break;
+						case 2:
+							key = '/qa/';
+							break;
+					}
+				}
+			});
+		}
+		var keyInfo="'"+key+"'";
+		var panelHead;
+			panelHead= $(".nav-container  a[href="+keyInfo+"]");
+			panelHead.addClass('show');
+	});
+</script>
+
+
+    <div class="page-container">
+      <div class="row">
+        <div class="col-xs-3 page-sidebar hidden-sm hidden-xs">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a href="/book/monitor/monitor_index.html" role="button">
+          监控
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/monitor/monitor_overview.html">总览</a></li>
+          <li><a href="/book/monitor/monitor_map.html">拓扑</a></li>
+          <li><a href="/book/monitor/monitor_webTransaction.html">web 事务</a></li>
+          <li><a href="/book/monitor/monitor_dataBase.html">数据库</a></li>
+          <li><a href="/book/monitor/monitor_external.html">外部服务</a></li>
+          <li><a href="/book/monitor/monitor_bgTask.html">后台任务</a></li>
+          <li><a href="/book/monitor/monitor_jvm.html">JVM</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/event/event_index.html" class="collapsed">
+          事件
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/event/event_errorInfo.html">错误信息</a></li>
+          <li><a href="/book/event/event_performanceProfiling.html">性能剖析</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/report/report_index.html" class="collapsed">
+         报表
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/report/report_webTransaction.html">web 事务</a></li>
+          <li><a href="/book/report/report_dataBase.html">数据库</a></li>
+          <li><a href="/book/report/report_jvm.html">JVM</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/setting/setting_index.html" class="collapsed">
+          设置
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/setting/setting_serverEnvironment.html">服务器环境</a></li>
+          <li><a href="/book/setting/setting_applicationSet.html">应用设置</a></li>
+          <li><a href="/book/setting/setting_customTransaction.html">自定义事务</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/keyTransaction/keyTransaction_index.html" class="collapsed">
+          关键事务
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/keyTransaction/keyTransaction_overview.html">总览</a></li>
+          <li><a href="/book/keyTransaction/keyTransaction_map.html">拓扑</a></li>
+          <li><a href="/book/keyTransaction/keyTransaction_performanceprofiling.html">性能剖析</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>  
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a href="/book/systemSet/systemSet_index.html" class="collapsed">
+            报警设置
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <ul>
+          <li><a href="/book/systemSet/account.html">账号管理</a></li>
+          <li><a href="/book/systemSet/alarmPolicy.html">报警策略</a></li>
+           <li><a href="/book/systemSet/alarmPolicy02.html">报警记录</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <div class="col-xs-9 page-body">
+          <div class="body-box">
+            <h1>监控-web事务</h1>
+
+<p>该页面为 Web 事务页面，共由事务栏、Top5 Web 事务响应时间图、吞吐量图、慢事务追踪列表这 4 个部分组成。如下图：</p>
+
+<p>事务栏：</p>
+
+<ul>
+<li>事务栏展示当前应用下的所有事务。</li>
+<li>事务栏可以按照“响应时间占比大到小”、“平均响应时间从长到短”、“性能指数从低到高”、“吞吐量从高到低”来进行排序。点击单条事务，可以打开单个事务页面。单个事务页面，展示了当前事务的详细信息，包括“性能”和“详情”部分。</li>
+<li>单个事务页面，将在后面单独作为一部分进行介绍。</li>
+</ul>
+
+<p>Top5 Web 事务响应时间图：</p>
+
+<ul>
+<li>以面积图的方式，展示了平均响应时间最长的 5 个 Web 事务， 其响应时间随时间的变化情况。
+<img src="/images/aimonitor_transaction00.png" alt="Aimonitor transaction00" /></li>
+</ul>
+
+<p>吞吐量图：</p>
+
+<ul>
+<li>以折线图的方式，展示 Web 事务的吞吐量随时间的变化情况。</li>
+</ul>
+
+<p>慢事务追踪列表：</p>
+
+<ul>
+<li>该列表展示了当前应用发生响应时间超出阈值的事务时，相应事务的追踪记录。</li>
+<li>点击单条追踪记录，查看该条记录的详细信息。</li>
+<li>单条追踪记录页面，将在下面单独进行介绍。</li>
+</ul>
+
+<p>单条事务</p>
+
+<ul>
+<li>点击单条事务时，会展示当前事务的详细信息，包括性能、详情这 2 个部分。而每个部分都有相应的图表，用于从各个指标维度展示出单个事务的数据。</li>
+</ul>
+
+<p><strong>第 1 部分——性能</strong></p>
+
+<ul>
+<li>在性能部分，共有 4 个图表，分别为执行时间图、吞吐量图、崩溃列表、慢事务追踪列表。这 4 个图表分别从不同的指标维度，对事务的性能数据进行了解读。</li>
+</ul>
+
+<p>然而，什么是执行时间?它和响应时间有什么区别?</p>
+
+<ul>
+<li>执行时间和响应时间是两个不同的概念，具体区别详见“术语解释”。</li>
+</ul>
+
+<p>执行时间图：</p>
+
+<ul>
+<li>在执行时间图中，展示了该事务各个组件的执行时间随时间的变化情况。</li>
+</ul>
+
+<p>查看具体节点的指标数据：</p>
+
+<ul>
+<li>将鼠标悬停在图上某个节点，将显示节点对应时间段内的指标数据（节点对应的时间段，随时间选择器选择的时间跨度而变化），包括总响应时间、平均响应 时间、总执行时间、吞吐量、执行次数。
+<img src="/images/aimonitor_transactionone00.png" alt="Aimonitor transactionone00" /></li>
+</ul>
+
+<p>吞吐量图：</p>
+
+<ul>
+<li>吞吐量图展示了该事务的吞吐量随时间的变化情况。</li>
+</ul>
+
+<p>添加为关键事务：</p>
+
+<ul>
+<li>点击按钮，可以将当前的 Web 事务添加为关键事务。</li>
+<li>关键事务，将在“关键事务”功能模块进行介绍。</li>
+</ul>
+
+<p>介绍了执行时间图和吞吐量图这 2 个图表，下面将介绍崩溃列表、慢事务追踪列表这 2 个部分。<br></p>
+
+<p>崩溃列表：</p>
+
+<ul>
+<li>在执行时间图中，展示了该事务各个组件的执行时间随时间的变化情况。
+<img src="/images/aimonitor_transactionbreakdown00.png" alt="Aimonitor transactionbreakdown00" /></li>
+</ul>
+
+<p>慢事务追踪列表：</p>
+
+<ul>
+<li>展示该事务的所有慢事务追踪记录。</li>
+</ul>
+
+<p><strong>第 2 部分——详情</strong></p>
+
+<p>在详情部分，共有 5 个图表，分别为基本指标和事务拓扑图、响应时间图、错误率图、Apdex 图、慢事务追踪列表。这 5 个图表分别从不同的维度，对事务的性能数据进行了解读和展示。</p>
+
+<p>基本指标和事务拓扑图：</p>
+
+<ul>
+<li>基本指标：展示该事务的吞吐量、响应时间、错误率和 Apdex 值。</li>
+<li>事务拓扑图：展示该事务调用其他事务、数据库、外部服务的拓扑关系。</li>
+<li>事务拓扑图的功能，与应用拓扑图相同，点击不同图标可以弹出展示窗口，展示相应模块的详细信息。</li>
+</ul>
+
+<p>添加为关键事务：</p>
+
+<ul>
+<li>点击此处，会弹出填写框，将该事务添加为关键事务，并为该其设置名称和阈值。
+<img src="/images/aimonitor_transactionlist00.png" alt="Aimonitor transactionlist00" /></li>
+</ul>
+
+<p>吞吐量图：</p>
+
+<ul>
+<li>吞吐量图展示了该事务的吞吐量随时间的变化情况。</li>
+</ul>
+
+<p>介绍了执行基本指标和事务拓扑图、响应时间图这 2 个图表，下面将介绍错误率图、Apdex 图这 2 个部分。（此处的慢事务追踪列表，与性能部分相同。在此处重复，只是为了避免用户需要在页面间切换，方便用户查看数据。故不再赘述。）</p>
+
+<p>错误率图：</p>
+
+<ul>
+<li>错误率是指“该事务的错误次数与事务总次数的比率”，错误率图展示了该比率随时间的变化情况。</li>
+</ul>
+
+<p>Apdex 图：</p>
+
+<ul>
+<li>Apdex 值用于量化应用的性能，而在此处，则用于衡量单条事务的性能。该图展示了该事务的 Apdex 值随时间的变化情况。
+<img src="/images/aimonitor_transactionerrorinfo01.png" alt="Aimonitor transactionerrorinfo01" /></li>
+</ul>
+
+<p>慢事务追踪列表：</p>
+
+<ul>
+<li>此处的慢事务追踪列表，与性能部分相同。在此处重复，只是为了避免用户需要在页面间切换，方便用户查看数据。故不再赘述。</li>
+</ul>
+
+<p>单条慢事务追踪</p>
+
+<ul>
+<li>点击单条慢事务追踪时，会展示当前慢事务追踪的详细信息，包括概要、 详情、参数、SQL 这 4 个部分。</li>
+</ul>
+
+<p>第 1 部分——概要</p>
+
+<p>基本信息：</p>
+
+<ul>
+<li>展示该条慢事务追踪记录的基本信息，包括开始时间、总耗时、对应的实例（agent）。</li>
+</ul>
+
+<p>组件执行时间面积图：</p>
+
+<ul>
+<li>以横置的柱状面积图方式，展示了在本次慢事务追踪记录中，相应事务的各个组件，其执行时间在事务总耗时中所占的百分比。</li>
+<li>横置的柱状面积图，能够更直观的展示百分比数据。
+<img src="/images/aimonitor_transactiontrack.png" alt="Aimonitor transactiontrack" /></li>
+</ul>
+
+<p>最慢组件列表：</p>
+
+<ul>
+<li>展示在该 trace 记录中，执行慢的组件的调用次数、执行时间、组件的执行时间在事务响应时间中所占的时间百分比。</li>
+</ul>
+
+<p>第 2 部分——详情</p>
+
+<p>方法列表：</p>
+
+<ul>
+<li>展示该事务的各个方法的时间戳、耗时、耗时百分比和调用详情。</li>
+</ul>
+
+<p>方法追踪功能：</p>
+
+<ul>
+<li>点击此处，查看该方法的详细日志信息，从而定位问题。
+<img src="/images/aimonitor_transactioninfo00.png" alt="Aimonitor transactioninfo00" /></li>
+</ul>
+
+<p>颜色标识：</p>
+
+<ul>
+<li>耗时百分比为红色和黄色的方法是耗时较长的地方，需要重点关注。</li>
+</ul>
+
+<p>HTTP 请求：</p>
+
+<ul>
+<li>点击此处，查看调用该方法的 HTTP 请求。</li>
+</ul>
+
+<p>第 3 部分——参数</p>
+
+<ul>
+<li>在单条慢事务追踪记录的参数部分，展示了该事务的 HTTP 响应状态码、
+JVM 线程池名称，以及该事务中的自定义参数。如下图所示。
+<img src="/images/aimonitor_transactionparameters.png" alt="Aimonitor transactionparameters" /></li>
+</ul>
+
+<p>那么，什么是 HTTP 状态码?</p>
+
+<ul>
+<li>HTTP 状态码（HTTP Status Code）是用以表示网页服务器 HTTP 响应状态的 3 位数字代码。（可参照 HTTP 状态码详解）</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">常见状态码</th>
+<th style="text-align: left">含义</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">200 OK</td>
+<td style="text-align: left">请求已成功</td>
+</tr>
+<tr>
+<td style="text-align: left">301/302 Moved Permanently（重定向）</td>
+<td style="text-align: left">请求的 URL 已移走。Response 包含一个 Location URL， 说明资源现在所处的位置。</td>
+</tr>
+<tr>
+<td style="text-align: left">304 Not Modified（未修改）</td>
+<td style="text-align: left">客户的缓存资源是最新的， 要客户端使用缓存。</td>
+</tr>
+<tr>
+<td style="text-align: left">404 Not Found</td>
+<td style="text-align: left">未找到资源。</td>
+</tr>
+<tr>
+<td style="text-align: left">501 Internal Server Error</td>
+<td style="text-align: left">服务器遇到一个错误，使其无法对请求提供服务。</td>
+</tr>
+</tbody></table>
+
+<p><br>第 4 部分——SQL</p>
+
+<ul>
+<li>在单条慢事务追踪记录的 SQL 部分，展示该事务进行的数据库查询的详细信息，包括调用总时间、调用次数和 SQL 语句的类型。如下图所示。
+<img src="/images/aimonitor_transactionsql.png" alt="Aimonitor transactionsql" /></li>
+</ul>
+
+            <!--<hr style="margin-top: 50px;" />
+<div class="alert alert-warning" style="text-align:center; margin: 40px 0px;">
+  <p style="font-size: 16px;">
+    如果您对 AI 感兴趣，可以选择试用我们的产品，只需要点击下面的按钮免费注册即可。
+  </p>
+  <br />
+  <p>
+    <a href="https://user.oneapm.com/account/register.do?ref=https://cloud.oneapm.com&from=ci-docs" class="btn btn-info btn-lg" target="_blank">
+      立即注册 AI
+    </a>
+  </p>
+</div>
+<hr />
+<!-多说评论框 start -->
+<!--<div class="ds-thread"
+     id="ds-thread"
+     data-thread-key=""
+     data-title=""
+   data-url=""></div>
+<!-多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<!--<script type="text/javascript">
+  var titleTag = document.getElementsByTagName("h1")[0];
+
+  if (titleTag) {
+    title = document.getElementsByTagName("h1")[0].innerText;
+  } else {
+    title = "";
+  }
+
+  var duoshuoTag = document.getElementById('ds-thread');
+  duoshuoTag.setAttribute('data-thread-key', title.replace(/\s/g, ''));
+  duoshuoTag.setAttribute('data-title', title);
+
+  var duoshuoQuery = {short_name:"docs-ci"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>-->
+<!-- 多说公共JS代码 end -->
+
+
+            <div class="return"></div>
+          </div>
+          <div class="footer-in">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+      $(function() {
+        // $(".navbar-default .navbar-nav a[href='/agent/']").parent().addClass("active");
+        (function () {
+            $('.panel-default').mouseenter(function () {
+              if(!$(this).hasClass('active')){
+                $(this).children().addClass('in');
+              }
+            });
+            $('.panel-default').mouseleave(function () {
+              if(!$(this).hasClass('active')) {
+                $(this).children().removeClass('in');
+              }
+            });
+            var key=window.location.pathname;
+            var keyInfo="'"+key+"'";
+            var panelHead;
+            if(keyInfo.indexOf('index') !== -1){
+              panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent();
+              panelHead.siblings().addClass('in');
+              panelHead.parent().siblings('div').map(function () {
+                $(this).removeClass('active');
+              });
+              panelHead.parent().addClass('active');
+            }else if(keyInfo.indexOf('.') <0) {
+              keyInfo="'"+key+"book_index.html"+"'";
+              panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent();
+              panelHead.siblings().addClass('in');
+              panelHead.parent().siblings('div').map(function () {
+                $(this).removeClass('active');
+              });
+              panelHead.parent().addClass('active');
+            }else {
+                panelHead= $(".panel-default  a[href="+keyInfo+"]").parent().parent().parent().parent();
+                panelHead.addClass('in');
+                panelHead.parent().siblings('div').map(function () {
+                  $(this).removeClass('active');
+                });
+                panelHead.parent().addClass('active');
+              }
+          })();
+      });
+    </script>
+  </body>
+</html>
