@@ -223,7 +223,7 @@
 
   </head>
 
-  <body class="page-book book_index">
+  <body class="page-book book_monitor book_monitor_monitor_index">
       <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -441,37 +441,63 @@
         </div>
         <div class="col-xs-9 page-body">
           <div class="body-box">
-            <h1>开始使用</h1>
+            <h1>监控</h1>
 
-<h4>开始使用 Application Insight</h4>
+<p>该页面为进入 OneAPM Ai 的第一个页面，共由产品导航条、用户模块、 工单系统、应用程序列表、隐藏/显示应用、报警栏这 6 个部分组成。如图：
+<img src="/images/aimonitor_index.png" alt="Aimonitor index" />
+<strong>1.产品导航条：</strong><br></p>
 
 <ul>
-<li>OneAPM Ai，全名为 OneAPM Application Insight，是 OneAPM 为企业级用 户精心打造的应用性能管理（Application Performance Management）产品，如 下图所示。
-<img src="/images/ai_index.png" alt="Ai index" /></li>
+<li>展示了 OneAPM 的 Ai、Bi、Ci、Ct、Mi、Onea!ert 六大产品。<br></li>
 </ul>
 
-<p><strong>登陆</strong><br></p>
+<p><strong>2.用户模块：</strong><br></p>
 
 <ul>
-<li><p>访问 <a href="https://www.oneapm.com">OneAPM 登录页面</a> ，输入已注册的 OneAPM 账号，进入 OneAPM 主页面。<br></p></li>
-<li><p>若尚未注册 OneAPM 账号，请<a href="https://user.oneapm.com/account/register.do">注册 OneAPM 账号</a>后，开始使用。<br>
-默认进入控制台页面，点击 Application Insight 进入操作页面。
-<img src="/images/ai_index02.png" alt="Ai index02" /></p></li>
+<li>点击用户栏，弹出“个人中心”、“控制台”、“团队信息”、“切换团队”、“社区”、 “退出”这 6 个功能模块。
+<br></li>
+<li>点击“个人中心”，查看或修改个人信息;
+点击“控制台”， 在产品间进行切换;
+点击“团队信息”，查看和修改团队信息;
+点击“切换团队”，可以在各个团队下任意切换;
+点击“社区”，跳转到 OneAPM 讨论社区并向 OneAPM 反馈问题，OneAPM 工作人员会及时响应并帮助用户解决问题; 点击“退出”，退出 OneAPM 系统。<br></li>
 </ul>
 
-<p><strong>初次使用</strong><br></p>
+<p><strong>3.隐藏/显示应用：</strong><br></p>
 
 <ul>
-<li><p>初次使用 Application Insight 时，由于您尚未在您的AI产品中添加应用，首先会让您选择需要监控的对应平台应用，这里以 Java 应用为例，如图所示：<br>
-<img src="/images/ai_index03.png" alt="Ai index03" /></p></li>
-<li><p>当我们选中 Java 的图标后会看到，如图：
-<img src="/images/ai_index04.png" alt="Ai index04" /></p></li>
-<li><p>通过上面图中指示方式，（以 Tomcat 为例）下载 Agent 后放置到并成功部署在应用服务器根目录后如图：
-<img src="/images/ai_index06.png" alt="Ai index06" /></p></li>
-<li><p>注意：以上操作后，必须配置 license_key 到 /OneAPM/oneapm.properties 文件中，然后重启应用服务器；
-2 分钟后，再次登陆 OneAPM 后会看到如图:<br>
-<img src="/images/ai_index05.png" alt="Ai index05" /></p></li>
-<li><p>看到上图，就说明您已经成功监控到应用的性能数据，接下来开始您的 OneAPM 性能优化之旅吧！！！</p></li>
+<li>对于 1 小时内未产生数据的应用，Ai 自动将应用挪到隐藏应用列表; 当隐藏应用再次运行并产生数据，则将应用再次恢复到应用列表。<br></li>
+</ul>
+
+<p><strong>4.工单系统：</strong><br></p>
+
+<ul>
+<li><p>点击“工单”，弹出“新建工单”、“工单记录” 2 个功能模块。<br></p></li>
+<li><p>点击“新建工单”，向 OneAPM 技术支持人员提交问题; 点击“工单记录”，可以按照时间跨度或者工单状态，查看你的工单记录。<br></p></li>
+</ul>
+
+<p><strong>5.应用程序列表：</strong><br></p>
+
+<ul>
+<li>该列表展示 Ai 监控的应用程序，以及对应的响应时间、吞吐量、错误率指标。<br></li>
+<li>应用名称前面的小圆点，其颜色代表应用的健康状况：<br>
+
+<ul>
+<li>绿色——该应用在最近 1 小时内正常运行;</li>
+<li>红色——该应用在最近 1 小时内，发生严重报警问题;</li>
+<li>黄色——该应用在最近 1 小时内，发生告警问题;</li>
+<li>灰色——该应用在最近 1 小时内，没有产生数据。</li>
+</ul></li>
+<li>点击“添加”，可以新建需要监控的应用。<br></li>
+<li>（关于标红、标黄、标绿、标灰的阈值界定，详见“报警设置-应用程序”）<br></li>
+</ul>
+
+<p><strong>6.报警栏：</strong><br></p>
+
+<ul>
+<li>Ai 将性能问题分为“宕机、严重问题、告警问题”三类。当性能问题出现时，Ai 会触发相应的报警策略，并发送通知，同时记录该性能问题。通知会显示在报警栏的“通知”下; 问题记录则按照问题的类别，分别显示在报警 栏的“宕机”、“严重问题”、“告警问题”下。<br></li>
+<li>通知和三类性能问题，都有相应的详情页面，通过图表等方式，记录了相应的详细数据，方便用户定位并排查问题。点击蓝色“详情”链接即可进入。<br></li>
+<li>关于三类性能问题的阈值以及报警策略的设置，详见报警设置-应用程序。<br></li>
 </ul>
 
             <!--<hr style="margin-top: 50px;" />

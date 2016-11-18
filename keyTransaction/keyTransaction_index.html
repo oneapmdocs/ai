@@ -223,7 +223,7 @@
 
   </head>
 
-  <body class="page-book book_index">
+  <body class="page-book book_keyTransaction book_keyTransaction_keyTransaction_index">
       <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -441,38 +441,32 @@
         </div>
         <div class="col-xs-9 page-body">
           <div class="body-box">
-            <h1>开始使用</h1>
+            <h1>关键事务</h1>
 
-<h4>开始使用 Application Insight</h4>
-
-<ul>
-<li>OneAPM Ai，全名为 OneAPM Application Insight，是 OneAPM 为企业级用 户精心打造的应用性能管理（Application Performance Management）产品，如 下图所示。
-<img src="/images/ai_index.png" alt="Ai index" /></li>
-</ul>
-
-<p><strong>登陆</strong><br></p>
+<p><strong>首先，什么是关键事务?</strong><br></p>
 
 <ul>
-<li><p>访问 <a href="https://www.oneapm.com">OneAPM 登录页面</a> ，输入已注册的 OneAPM 账号，进入 OneAPM 主页面。<br></p></li>
-<li><p>若尚未注册 OneAPM 账号，请<a href="https://user.oneapm.com/account/register.do">注册 OneAPM 账号</a>后，开始使用。<br>
-默认进入控制台页面，点击 Application Insight 进入操作页面。
-<img src="/images/ai_index02.png" alt="Ai index02" /></p></li>
+<li>在 Web 应用中，从业务的角度来看，有些 Web 事务比其它事务更重要，这些重要的事务需要精确监控。这些事务包括应用中的关键事件（如登录操作或确认购买操作）或从性能角度来看最重要的事务（如搜索或登录操作）。<br></li>
+<li>关键事务功能，允许用户密切监控关键性事务，并在运行异常时收到警告。<br></li>
 </ul>
 
-<p><strong>初次使用</strong><br></p>
+<p>关键事务的起始页面，共由产品导航条、用户模块、工单系统、关键事务 列表和添加按钮、报警栏这 5 个部分组成。（产品导航条、用户模块、工单系统不再赘述。此处重点介绍关键事务列表和添加按钮、报警栏这 2 个部分。）</p>
+
+<p><strong>关键事务列表和添加按钮：</strong><br></p>
 
 <ul>
-<li><p>初次使用 Application Insight 时，由于您尚未在您的AI产品中添加应用，首先会让您选择需要监控的对应平台应用，这里以 Java 应用为例，如图所示：<br>
-<img src="/images/ai_index03.png" alt="Ai index03" /></p></li>
-<li><p>当我们选中 Java 的图标后会看到，如图：
-<img src="/images/ai_index04.png" alt="Ai index04" /></p></li>
-<li><p>通过上面图中指示方式，（以 Tomcat 为例）下载 Agent 后放置到并成功部署在应用服务器根目录后如图：
-<img src="/images/ai_index06.png" alt="Ai index06" /></p></li>
-<li><p>注意：以上操作后，必须配置 license_key 到 /OneAPM/oneapm.properties 文件中，然后重启应用服务器；
-2 分钟后，再次登陆 OneAPM 后会看到如图:<br>
-<img src="/images/ai_index05.png" alt="Ai index05" /></p></li>
-<li><p>看到上图，就说明您已经成功监控到应用的性能数据，接下来开始您的 OneAPM 性能优化之旅吧！！！</p></li>
+<li>在关键事务事务列表，展示了关键事务事务的相关信息，包括关键事务名、所属应用程序、URI、吞吐量、 错误率。<br></li>
+<li>点击添加按钮，可以针对各个应用，添加关键事务。<br></li>
 </ul>
+
+<p><strong>报警栏：</strong><br></p>
+
+<ul>
+<li>对于超过阈值的关键事务，进行关键事务的报警。<br></li>
+<li>关键事务的报警机制与应用程序类似，其策略设置是在“报警策略-关键事务”下。后面将进行详 细介绍。<br></li>
+</ul>
+
+<p><img src="/images/aikeytransactionindex01.png" alt="Aikeytransactionindex01" /></p>
 
             <!--<hr style="margin-top: 50px;" />
 <div class="alert alert-warning" style="text-align:center; margin: 40px 0px;">

@@ -223,7 +223,7 @@
 
   </head>
 
-  <body class="page-book book_index">
+  <body class="page-book book_monitor book_monitor_monitor_overview">
       <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -441,37 +441,175 @@
         </div>
         <div class="col-xs-9 page-body">
           <div class="body-box">
-            <h1>开始使用</h1>
-
-<h4>开始使用 Application Insight</h4>
+            <h1>监控-总览</h1>
 
 <ul>
-<li>OneAPM Ai，全名为 OneAPM Application Insight，是 OneAPM 为企业级用 户精心打造的应用性能管理（Application Performance Management）产品，如 下图所示。
-<img src="/images/ai_index.png" alt="Ai index" /></li>
+<li>该页面为总览页面，共由 Ai 功能栏、选择器、底部滚动栏、相关指标图表这 4 个部分组成。<br>
+<img src="/images/aimonitor_overview01.png" alt="Aimonitor overview01" /></li>
 </ul>
 
-<p><strong>登陆</strong><br></p>
+<p><strong>Ai 功能栏：</strong><br></p>
 
 <ul>
-<li><p>访问 <a href="https://www.oneapm.com">OneAPM 登录页面</a> ，输入已注册的 OneAPM 账号，进入 OneAPM 主页面。<br></p></li>
-<li><p>若尚未注册 OneAPM 账号，请<a href="https://user.oneapm.com/account/register.do">注册 OneAPM 账号</a>后，开始使用。<br>
-默认进入控制台页面，点击 Application Insight 进入操作页面。
-<img src="/images/ai_index02.png" alt="Ai index02" /></p></li>
+<li>分为“监控、事件、报表、设置、 关键事务、报警设置” 6 个一级功能模块。每个一级功能模块下，又有若干个二级功能模块。选中不同的功能模块，进行功能切换。</li>
 </ul>
 
-<p><strong>初次使用</strong><br></p>
+<p><strong>选择器：</strong><br></p>
 
 <ul>
-<li><p>初次使用 Application Insight 时，由于您尚未在您的AI产品中添加应用，首先会让您选择需要监控的对应平台应用，这里以 Java 应用为例，如图所示：<br>
-<img src="/images/ai_index03.png" alt="Ai index03" /></p></li>
-<li><p>当我们选中 Java 的图标后会看到，如图：
-<img src="/images/ai_index04.png" alt="Ai index04" /></p></li>
-<li><p>通过上面图中指示方式，（以 Tomcat 为例）下载 Agent 后放置到并成功部署在应用服务器根目录后如图：
-<img src="/images/ai_index06.png" alt="Ai index06" /></p></li>
-<li><p>注意：以上操作后，必须配置 license_key 到 /OneAPM/oneapm.properties 文件中，然后重启应用服务器；
-2 分钟后，再次登陆 OneAPM 后会看到如图:<br>
-<img src="/images/ai_index05.png" alt="Ai index05" /></p></li>
-<li><p>看到上图，就说明您已经成功监控到应用的性能数据，接下来开始您的 OneAPM 性能优化之旅吧！！！</p></li>
+<li><p>应用选择器——点击弹出列表，展示所有应用程序，通过选中某一应用进行切换。应用名称前面的小圆点，其颜色代表应用的健康状况。</p></li>
+<li><p>实例选择器——点击弹出列表，展示该应用下的所有实例（agent）。通过选中某一个实例进行切换，默认选择“全部实例”。</p></li>
+<li><p>时间选择器——点击时间选择器，选择查看数据的时间跨度。提供 10 个时间跨度。</p></li>
+</ul>
+
+<p><strong>底部滚动栏：</strong><br></p>
+
+<ul>
+<li><p>实时展示了当前应用在最近两分钟的实时数据，从左到右依次为：应用名称、平均响应时间、吞吐量、错误率。</p></li>
+<li><p>应用名称前面的小圆点，其颜色代表应用的健康状况。<br></p></li>
+</ul>
+
+<p><strong>响应时间图表，如下图：</strong></p>
+
+<ul>
+<li>Web 事务响应时间图表
+<img src="/images/aimonitor_overtime.png" alt="Aimonitor overtime" /><br></li>
+</ul>
+
+<p><strong>响应时间图主要由 5 部分组成</strong><br></p>
+
+<ul>
+<li><p>Web 事务：应用中 Web 事务的响应时间;</p></li>
+<li><p>Database：应用中 SQL 语句的响应时间;</p></li>
+<li><p>JVM：应用中 JVM 的响应时间;</p></li>
+<li><p>WEB External ：Http 请求第三方服务调用;</p></li>
+<li><p>后台任务：代表应用中后台任务的执行时间;</p></li>
+</ul>
+
+<p><strong>响应时间的四维展示：</strong><br></p>
+
+<ul>
+<li>Ai 将 Web 事务响应时间分为 3 个维度 [1.JVM 的响应时间; 2.Database 的响应时间; 3.WEB External 的响应时间;] 以堆叠面积图的方式代表 Web 事务的响应时间。</li>
+</ul>
+
+<p><strong>查看具体节点的指标数据：</strong><br></p>
+
+<ul>
+<li>将鼠标悬停在图上某个节点，将显示节点对应时间段内的指标数据（节点对应的时间段，随时间选择器选择的时间跨度而变化），包括平均响应时间、执行次数。</li>
+</ul>
+
+<p><strong>Apdex 图，如下图：</strong><br></p>
+
+<ul>
+<li><p>Apdex 图：
+<img src="/images/aimonitor_overapdex.png" alt="Aimonitor overapdex" /><br></p></li>
+<li><p>Apdex 图展示了 Apdex 值随时间的变化情况。<br></p></li>
+</ul>
+
+<p><strong>首先，什么是 Apdex?</strong><br></p>
+
+<ul>
+<li><p>Apdex，英文全称为 Application Performance Index，是指“应用性能指标”。Apdex 是一个国际通用标准，能够量化用户对应用性能的满意度，并通过统一的衡量、计算和报告方法，将最终用户体验和应用性能作为完整指标，进行统一度量。</p></li>
+<li><p>经过大量的应用数据分析，Ai 将应用性能分为 3 个等级，同时确定了阈值——阈值为 T（默认为 0.5 秒，用户可根据自身应用环境进行修改）;用户请求按照阈值分为满意（响应时间<T）、容忍（T<响应时间<4T）、失望（响应时间>4T）三类，Apdex=（满意次数+容忍次数/2）/总次数。</p></li>
+<li><p>这样，应用性能被量化为 0、1 之间的数值（0 代表没有满意用户，1 则代表所有用户都满意），即 Apdex 值。通过 Apdex 值与用户体验的紧密关联，为管理者提供了一种通过应用性能量化值来评估用户满意度的方法。</p></li>
+</ul>
+
+<p><strong>提示：</strong><br></p>
+
+<ul>
+<li><p>每个图表上都有“提示”标签。鼠标移动到此处，即可查看该图表所展示指标的相关解释。</p></li>
+<li><p>吞吐量的二维展示：将鼠标悬停在图上某个节点，将显示节点对应时间段内的指标数据（节点对应的时间段，随时间选择器选择的时间跨度而变化），包括性能指数、不满意次数、满意次数、可容忍次数、样本总数。</p></li>
+</ul>
+
+<p><strong>吞吐量图，如下图：</strong><br></p>
+
+<ul>
+<li><p>吞吐量图
+<img src="/images/aimonitor_overcpm.png" alt="Aimonitor overcpm" /></p></li>
+<li><p>吞吐量图展示了 Apdex 值随时间的变化情况。<br></p></li>
+</ul>
+
+<p><strong>首先，什么是吞吐量?</strong></p>
+
+<ul>
+<li><p>应用吞吐量，是指应用程序每分钟被调用的次数（cpm，即 Calls Per Minute）。吞吐量可以反映应用系统对于用户请求的响应能力。</p></li>
+<li><p>查看具体节点的指标数据：将鼠标悬停在图上某个节点，将显示节点对应时间段内的指标数据 （节点对应的时间段，随时间选择器选择的时间跨度而变化），包括每分钟接收请求次数，请求总数。</p></li>
+</ul>
+
+<p><strong>Web 事务列表</strong></p>
+
+<ul>
+<li>Web 事务列表展示了当前应用下、平均响应时间为 Top3 的事务。同时在事务名称下，也展示出该事务的慢事务追踪（trace），用于记录在某个时候、响应时间超出阈值的事务的详细信息。</li>
+</ul>
+
+<p><strong>首先，什么是事务?</strong></p>
+
+<ul>
+<li>一个事务，表示一个从“用户从终端发出请求 -&gt; 应用服务器 -&gt; 数据库查询-&gt; 应用服务器 -&gt; 用户终端”的完整过程。通常表现为一个 HTTP 请求。<br>
+<img src="/images/aimonitor_overweblist.png" alt="Aimonitor overweblist" /><br>
+点击对应的事务，跳转到“监控-Web 事务”页面下并选中该事务，展示该事务的详细信息。<br>
+<img src="/images/aimonitor_overweblistinfo.png" alt="Aimonitor overweblistinfo" /><br>
+点击某条慢事务追踪，跳转到“监控-Web 事务”页面下并选中该 trace，展示该 trace 的详细信息。<br>
+<img src="/images/aimonitor_overwebinfo.png" alt="Aimonitor overwebinfo" /><br></li>
+</ul>
+
+<p><strong>错误率图</strong></p>
+
+<ul>
+<li>错误率图展示了应用的错误率随时间的变化情况。</li>
+</ul>
+
+<p><strong>首先，什么是错误率?</strong></p>
+
+<ul>
+<li>错误率是指应用程序返回异常数据的比率。（异常数据，是指 java 所抛出的异常信息、http 无法响应、web 无响应等错误信息，与应用程序运行日志中的错误信息等没有一一对应关系。）<br>
+<img src="/images/aimonitor_overerror.png" alt="Aimonitor overerror" /><br></li>
+<li><p>查看具体节点的指标数据：将鼠标悬停在图上某个节点，将显示节点对应时间段内的指标数据（节点对应的 时间段，随时间选择器选择的时间跨度而变化），包括错误率、错误次数、总次数。</p></li>
+<li><p>错误率的二维展示：Ai 将错误率分为 2 个维度[1.Web 事务的错误率; 2.后台任务的错误率]。以折线图的方式进行展示。点击图下方的两个维度，可以在”展示或隐藏相应维度数据“间进行切换。<br></p></li>
+</ul>
+
+<p><strong>服务器列表</strong><br></p>
+
+<ul>
+<li>服务器列表展示了应用的错误率随时间的变化情况。<br></li>
+</ul>
+
+<p><strong>首先，什么是服务器?</strong><br></p>
+
+<ul>
+<li><p>服务器，此处是指应用服务器，区别于一般所说的物理服务器。当一个应用运行在多个应用服务器上时，我们在每一个应用服务器上部署 Ai 探针，就可以监控应用运行时的服务器性能指标。<br>
+<img src="/images/aimonitor_overserverlist.png" alt="Aimonitor overserverlist" /><br></p></li>
+<li><p>JVM(Java Virtual Machine，Java 虚拟机：点击不同的 JVM，可以查看当前应用在不同实例下的指标信息。</p></li>
+</ul>
+
+<p><strong>报警列表</strong><br></p>
+
+<ul>
+<li>报警列表展示了与当前应用有关的所有触发报警的问题、通知。<br></li>
+</ul>
+
+<p><strong>首先，什么是服务器?</strong></p>
+
+<ul>
+<li>服务器，此处是指应用服务器，区别于一般所说的物理服务器。当一个应用运行在多个应用服务器上时，我们在每一个应用服务器上部署 Ai 探针，就可以监控应用运行时的服务器性能指标。<br></li>
+</ul>
+
+<p><strong>性能问题：</strong><br></p>
+
+<ul>
+<li><p>Ai 将性能问题分为“宕机、严重问题、告警问题”三类。当性能问题出 现时，Ai 会触发相应的报警策略，并发送通知，同时记录该性能问题。问题记录按照问题的类别，分别显示在报警列表的“宕机”、“严重问题”、 “告警问题”下。</p></li>
+<li><p>三类性能问题，都有相应的详情页面，通过图表等方式，记录了相应的详细数据，方便用户定位并排查问题。点击蓝色“详情”链接即可进入。</p></li>
+<li><p>三个问题图标，从左到右下图中标记[2; 3; 4;]依次为[宕机; 严重问题; 告警问题;]
+<img src="/images/aimonitor_overalert.png" alt="Aimonitor overalert" /><br></p></li>
+</ul>
+
+<p><strong>通知：</strong><br></p>
+
+<ul>
+<li><p>上图中标记 1 为通知图标，记录的详细的告警日志信息。</p></li>
+<li><p>当性能问题出现时，Ai 会触发相应的报警策略，并发送通知。通知展示在报警 列表的“通知”下。</p></li>
+<li><p>通知有相应的详情页面，通过图表等方式，记录了相应的详细数据，以及触发报警策略、发送通知的问题记录。点击蓝色“详情”链接即可进入。</p></li>
+<li><p>通知与报警策略关联紧密，可以记录报警策略的变化，方便用户定位并排查问题。</p></li>
 </ul>
 
             <!--<hr style="margin-top: 50px;" />

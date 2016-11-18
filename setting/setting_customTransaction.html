@@ -223,7 +223,7 @@
 
   </head>
 
-  <body class="page-book book_index">
+  <body class="page-book book_setting book_setting_setting_customTransaction">
       <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -441,37 +441,47 @@
         </div>
         <div class="col-xs-9 page-body">
           <div class="body-box">
-            <h1>开始使用</h1>
+            <h1>设置－自定义事务（※有适用范围※）</h1>
 
-<h4>开始使用 Application Insight</h4>
+<p><strong>首先，为什么该功能模块有适用范围?</strong><br></p>
 
 <ul>
-<li>OneAPM Ai，全名为 OneAPM Application Insight，是 OneAPM 为企业级用 户精心打造的应用性能管理（Application Performance Management）产品，如 下图所示。
-<img src="/images/ai_index.png" alt="Ai index" /></li>
+<li><p>因为不同语言应用的运行环境有很大差异，所以该功能模块并不对所有应用都有效。而我们也在不断努力，让该功能支持更多的语言和框架。<br>
+<img src="/images/setting2.png" alt="Setting2" />
+<strong>然而，什么是自定义事务?</strong><br></p></li>
+<li><p>用户根据自己的需要，通过配置参数、优先级、抓取规则，将一些符合规则的 HTTP 请求进行归类分析。这一类符合当前设置的事务，则为一个自定义事务。</p></li>
+<li><p>自定义事务功能，允许用户将自己关心的重要业务定义为自定义事务，通过对用户指定的业务入口的监听，就可以实现对该业务的实时监控。同时，用户可以根据不同的业务分析需要，来设置业务的优先级、监听规则，从而更加了解自己的业务。</p></li>
+<li><p>此处以 Java 应用的“设置-自定义事务”页面为例。自定义事务页面分为自定义事务列表、添加自定义事务这 2 个部分。</p></li>
 </ul>
 
-<p><strong>登陆</strong><br></p>
+<p><strong>自定义事务列表：</strong><br></p>
 
 <ul>
-<li><p>访问 <a href="https://www.oneapm.com">OneAPM 登录页面</a> ，输入已注册的 OneAPM 账号，进入 OneAPM 主页面。<br></p></li>
-<li><p>若尚未注册 OneAPM 账号，请<a href="https://user.oneapm.com/account/register.do">注册 OneAPM 账号</a>后，开始使用。<br>
-默认进入控制台页面，点击 Application Insight 进入操作页面。
-<img src="/images/ai_index02.png" alt="Ai index02" /></p></li>
+<li>在自定义事务列表，展示了自定义事务的相关信息，包括类型、自定义事务名、优先级、可用性、管理。</li>
 </ul>
 
-<p><strong>初次使用</strong><br></p>
+<p><strong>添加自定义事务：</strong><br></p>
 
 <ul>
-<li><p>初次使用 Application Insight 时，由于您尚未在您的AI产品中添加应用，首先会让您选择需要监控的对应平台应用，这里以 Java 应用为例，如图所示：<br>
-<img src="/images/ai_index03.png" alt="Ai index03" /></p></li>
-<li><p>当我们选中 Java 的图标后会看到，如图：
-<img src="/images/ai_index04.png" alt="Ai index04" /></p></li>
-<li><p>通过上面图中指示方式，（以 Tomcat 为例）下载 Agent 后放置到并成功部署在应用服务器根目录后如图：
-<img src="/images/ai_index06.png" alt="Ai index06" /></p></li>
-<li><p>注意：以上操作后，必须配置 license_key 到 /OneAPM/oneapm.properties 文件中，然后重启应用服务器；
-2 分钟后，再次登陆 OneAPM 后会看到如图:<br>
-<img src="/images/ai_index05.png" alt="Ai index05" /></p></li>
-<li><p>看到上图，就说明您已经成功监控到应用的性能数据，接下来开始您的 OneAPM 性能优化之旅吧！！！</p></li>
+<li><p>点击按钮，添加自定义事务。</p></li>
+<li><p>关于如何配置自定义事务的规则，将在后面进行介绍。<br>
+<img src="/images/aiset_customtransaction001.png" alt="Aiset customtransaction001" />
+<strong>自定义事务的设置</strong><br></p></li>
+<li><p>自定义设置如下图：
+<img src="/images/aiset_customtransaction02.png" alt="Aiset customtransaction02" /></p></li>
+</ul>
+
+<p><strong>设置自定义事务后，可在”监控-Web 事务“中找到该自定义事务，查看其详细信息。设置步骤如下：</strong><br></p>
+
+<ul>
+<li><p>1.选择某个需要自定义事务的应用，进入“设置 &gt;&gt; 自定义事务”下;</p></li>
+<li><p>2.填写自定义事务的名称（如 user_xiaoming101）;</p></li>
+<li><p>3.设置该自定义事务是否可用;</p></li>
+<li><p>4.设置该自定义事务的优先级;</p></li>
+<li><p>5.设置 URI 请求的方法——GET 或 POST;</p></li>
+<li><p>6.设置 URI 的匹配规则;</p></li>
+<li><p>7.设置 HTTP 中的参数的匹配规则;</p></li>
+<li><p>8.取消或保存该条自定义事务。</p></li>
 </ul>
 
             <!--<hr style="margin-top: 50px;" />

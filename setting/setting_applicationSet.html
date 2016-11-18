@@ -223,7 +223,7 @@
 
   </head>
 
-  <body class="page-book book_index">
+  <body class="page-book book_setting book_setting_setting_applicationSet">
       <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -441,37 +441,80 @@
         </div>
         <div class="col-xs-9 page-body">
           <div class="body-box">
-            <h1>开始使用</h1>
+            <h1>设置－应用设置（※有适用范围※）</h1>
 
-<h4>开始使用 Application Insight</h4>
+<p><strong>首先，为什么该功能模块有适用范围?</strong><br></p>
 
 <ul>
-<li>OneAPM Ai，全名为 OneAPM Application Insight，是 OneAPM 为企业级用 户精心打造的应用性能管理（Application Performance Management）产品，如 下图所示。
-<img src="/images/ai_index.png" alt="Ai index" /></li>
+<li>因为不同语言应用的运行环境有很大差异，所以该功能模块并不对所有应用都有效。而我们也在不断努力，让该功能支持更多的语言和框架。<br></li>
 </ul>
 
-<p><strong>登陆</strong><br></p>
+<p><img src="/images/setting.png" alt="Setting" /></p>
 
 <ul>
-<li><p>访问 <a href="https://www.oneapm.com">OneAPM 登录页面</a> ，输入已注册的 OneAPM 账号，进入 OneAPM 主页面。<br></p></li>
-<li><p>若尚未注册 OneAPM 账号，请<a href="https://user.oneapm.com/account/register.do">注册 OneAPM 账号</a>后，开始使用。<br>
-默认进入控制台页面，点击 Application Insight 进入操作页面。
-<img src="/images/ai_index02.png" alt="Ai index02" /></p></li>
+<li><p>在应用设置页面，可以自行配置实例的各个参数(若用户不选择自行配置， 则使用 Ai 的默认配置)，如自行配置慢事务、慢 SQL 阈值等参数，使 Ai 按照你的要求进行应用监控。</p></li>
+<li><p>此处以 Java 应用的“设置-应用设置”页面为例。应用设置页面分为基本信息、慢事务、浏览器监控、Web 事务、http 请求参数、错误信息、数据库这 7 个部分。</p></li>
 </ul>
 
-<p><strong>初次使用</strong><br></p>
+<p><strong>基本信息：</strong><br></p>
 
 <ul>
-<li><p>初次使用 Application Insight 时，由于您尚未在您的AI产品中添加应用，首先会让您选择需要监控的对应平台应用，这里以 Java 应用为例，如图所示：<br>
-<img src="/images/ai_index03.png" alt="Ai index03" /></p></li>
-<li><p>当我们选中 Java 的图标后会看到，如图：
-<img src="/images/ai_index04.png" alt="Ai index04" /></p></li>
-<li><p>通过上面图中指示方式，（以 Tomcat 为例）下载 Agent 后放置到并成功部署在应用服务器根目录后如图：
-<img src="/images/ai_index06.png" alt="Ai index06" /></p></li>
-<li><p>注意：以上操作后，必须配置 license_key 到 /OneAPM/oneapm.properties 文件中，然后重启应用服务器；
-2 分钟后，再次登陆 OneAPM 后会看到如图:<br>
-<img src="/images/ai_index05.png" alt="Ai index05" /></p></li>
-<li><p>看到上图，就说明您已经成功监控到应用的性能数据，接下来开始您的 OneAPM 性能优化之旅吧！！！</p></li>
+<li>修改当前应用的展示名称。</li>
+</ul>
+
+<p><strong>慢事务：</strong><br></p>
+
+<ul>
+<li><p>修改慢事务追踪的阈值。当事务的响应时间超过阈值，则开始记录“慢事务追踪”（默认为 4 倍 Apdex T）</p></li>
+<li><p>修改 agent 最多能够传回的慢事务的个数（默认为 20 个，最小为 1）</p></li>
+<li><p>修改性能指数 Apdex T。（默认为 0.5 秒）
+<img src="/images/aiset_application01.png" alt="Aiset application01" /></p></li>
+</ul>
+
+<p>介绍了基本信息、慢事务这 2 个部分，本页将介绍浏览器监控、Web 事务、http 请求参数这 3 个部分。</p>
+
+<p><strong>浏览器监控：</strong><br></p>
+
+<ul>
+<li><p>通过勾选或者取消勾选，可以启用或者停用浏览器监控。</p></li>
+<li><p>浏览器监控数据，在 Bi 产品下展示。</p></li>
+</ul>
+
+<p><strong>Web 事务：</strong><br></p>
+
+<ul>
+<li><p>勾选“自动命名 Web 事务”，则 Ai 会根据应用框架和组件来命名 Web 事务;若不勾选，Ai 则使用 Web 事务的 URI 来命名 Web 事务。</p></li>
+<li><p>在过滤静态资源栏，可以用逗号分隔，填写多个赋值内容。则 Ai 会自动过滤以上格式的静态文件，避免生成过多的事务。</p></li>
+<li><p>对于静态文件的请求，其响应时间可能确实很长，而这在特定环境下，也是正常的请求表现。Ai 允许用户通过’“过滤静态资源栏”，可以将这些请求过滤掉，避免产生干扰信息。
+<img src="/images/aiset_application03.png" alt="Aiset application03" /></p></li>
+</ul>
+
+<p><strong>http 请求参数：</strong><br></p>
+
+<ul>
+<li><p>勾选“采集 HTTP 请求参数”，则 Ai 会捕捉 HTTP 参数，并将它展示在慢追踪和错误信息中。</p></li>
+<li><p>忽略参数：在忽略参数行，填写需要忽略的参数，并使用逗号分隔。Ai 则会有选择的放弃收集这些 HTTP 参数。</p></li>
+<li><p>若用户既需要看到某些重要的 HTTP 参数，但同时也要保护敏感信息。则可以使用该部分功能实现。
+介绍了浏览器监控、Web 事务、http 请求参数这两个部分，本页将介绍错误信息、数据库这 2 个部分。</p></li>
+</ul>
+
+<p><strong>错误信息：</strong><br></p>
+
+<ul>
+<li><p>勾选“采集错误信息”，则 Ai 将采集该应用所有的错误和异常信息。</p></li>
+<li><p>在过滤类名栏，可以用逗号分隔，填写多个赋值内容。则 Ai 会过滤掉这些特定的类名，不作为错误信息报告。
+<img src="/images/aiset_application04.png" alt="Aiset application04" /></p></li>
+</ul>
+
+<p><strong>数据库：</strong><br></p>
+
+<ul>
+<li><p>勾选“启用慢 SQL 追踪”，则 Ai 会捕捉运行缓慢的 SQL 语句。</p></li>
+<li><p>追踪模式：通过下拉列表，修改 SQL 的追踪模式——“关闭”表示不记录 SQL;“原始sql”表示按原模式纪录 SQL;“混淆 sql”表示不纪录数字和字符串。</p></li>
+<li><p>勾选“执行计划追踪”，则 Ai 会捕捉执行计划。（目前只支持 MySQL 和 PostgreSQL 的Select 语句）</p></li>
+<li><p>慢 sql 追踪阈值：该选项只有在“启用慢 SQL 追踪”时才生效。当 SQL 的执行时间大于该阈值的时候，Ai 将其记录为慢 sql; 如果开启“执行计划追踪”，同时也会收集该 sql的执行计划。（默认值为 0.5 秒）</p></li>
+<li><p>stacktrace 阈值：作用于 Web 事务的 trace 功能和慢 sql 追踪功能，当某组件的响应时间超过该阈值，Ai 则收集并展示 stacktrace。（默认值为 0.5 秒）
+<img src="/images/aiset_application05.png" alt="Aiset application05" /></p></li>
 </ul>
 
             <!--<hr style="margin-top: 50px;" />

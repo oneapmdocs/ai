@@ -223,7 +223,7 @@
 
   </head>
 
-  <body class="page-book book_index">
+  <body class="page-book book_systemSet book_systemSet_alarmPolicy">
       <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -441,37 +441,119 @@
         </div>
         <div class="col-xs-9 page-body">
           <div class="body-box">
-            <h1>开始使用</h1>
-
-<h4>开始使用 Application Insight</h4>
+            <h1>报警策略－应用程序</h1>
 
 <ul>
-<li>OneAPM Ai，全名为 OneAPM Application Insight，是 OneAPM 为企业级用 户精心打造的应用性能管理（Application Performance Management）产品，如 下图所示。
-<img src="/images/ai_index.png" alt="Ai index" /></li>
+<li><p>在应用程序的报警策略页面，可以设置应用的报警策略，当应用的性能指标出现异常时，Ai 会触发报警策略通知用户，使用户能对应用的性能进行实时的监控（根据 Apdex、错误率和是否宕机来设置报警阈值）。<br></p></li>
+<li><p>该页面主要有报警策略、创建报警策略按钮这 2 个部分。<br></p></li>
 </ul>
 
-<p><strong>登陆</strong><br></p>
+<p><strong>报警策略：</strong><br></p>
 
 <ul>
-<li><p>访问 <a href="https://www.oneapm.com">OneAPM 登录页面</a> ，输入已注册的 OneAPM 账号，进入 OneAPM 主页面。<br></p></li>
-<li><p>若尚未注册 OneAPM 账号，请<a href="https://user.oneapm.com/account/register.do">注册 OneAPM 账号</a>后，开始使用。<br>
-默认进入控制台页面，点击 Application Insight 进入操作页面。
-<img src="/images/ai_index02.png" alt="Ai index02" /></p></li>
+<li>每一个报警策略，都分为 4 个模块：策略名称; 策略操作，包括禁用（禁用后可以启用）、删除、修改等操作; 策略报警条件，包括 Apdex 报警阈值、错误率报警阈值、是否开启宕机报警; 通知用户，包括需要通知的账号、通知方式。<br>
+<img src="/images/aisystemset_aialarm01.png" alt="Aisystemset aialarm01" /></li>
 </ul>
 
-<p><strong>初次使用</strong><br></p>
+<p><strong>创建报警策略：</strong><br></p>
 
 <ul>
-<li><p>初次使用 Application Insight 时，由于您尚未在您的AI产品中添加应用，首先会让您选择需要监控的对应平台应用，这里以 Java 应用为例，如图所示：<br>
-<img src="/images/ai_index03.png" alt="Ai index03" /></p></li>
-<li><p>当我们选中 Java 的图标后会看到，如图：
-<img src="/images/ai_index04.png" alt="Ai index04" /></p></li>
-<li><p>通过上面图中指示方式，（以 Tomcat 为例）下载 Agent 后放置到并成功部署在应用服务器根目录后如图：
-<img src="/images/ai_index06.png" alt="Ai index06" /></p></li>
-<li><p>注意：以上操作后，必须配置 license_key 到 /OneAPM/oneapm.properties 文件中，然后重启应用服务器；
-2 分钟后，再次登陆 OneAPM 后会看到如图:<br>
-<img src="/images/ai_index05.png" alt="Ai index05" /></p></li>
-<li><p>看到上图，就说明您已经成功监控到应用的性能数据，接下来开始您的 OneAPM 性能优化之旅吧！！！</p></li>
+<li><p>点击“创建报警策略”，通过填写策略名称，并且配置报警策略的各项阈值，可增加报警策略。</p></li>
+<li><p>关于如何配置报警策略的各项指标，将在后面进行介绍。</p></li>
+</ul>
+
+<p><strong>报警策略的设置</strong><br></p>
+
+<ul>
+<li>点击报警策略的“编辑”小图标，会展示当前报警策略的配置窗口。</li>
+</ul>
+
+<p><strong>报警策略：</strong><br></p>
+
+<ul>
+<li>配置报警策略时，除了最开始新增报警策略，不能再修改报警策略的名称。</li>
+</ul>
+
+<p><strong>配置“严重问题”、“告警问题”、“宕机”三类问题的报警阈值：</strong><br></p>
+
+<ul>
+<li>告警问题——标黄部分，默认为“当 10 分钟内性能指数低于 0.85，或者 10 分钟内平均错误率高于 1%，则触发告警问题通知”（参数均可以自行调整）</li>
+<li>严重问题——标红部分，默认为“当 5 分钟内性能指数低于 0.7，或者 3 分钟内平均错误率高于 5%，则触发严重问题通知“（参数均可以自行调整）</li>
+<li>宕机问题——默认勾选，“当 3 分钟内没有数据返回时，则认为虚拟机宕机，触发宕机问题通知”（参数不能调整，只能选择是否开启宕机问题通知）</li>
+</ul>
+
+<p><strong>选择应用：</strong><br></p>
+
+<ul>
+<li><p>选择使用当前策略实现报警的应用时，在“应用名称”栏，点击“分配策略”，则会出现应用列表，同时展示各个应用的 agent。通过勾选 agent，可以使这些 agent 按照当前报警策略的设置，进行问题报警。（1 个 agent，只能在某一个报警策略中被勾选。在为其他报警策略分配应用时，该 agent 不会再出现于列表中。）</p></li>
+<li><p>分配应用时，是以 agent 为基本单位来进行勾选。也就是说，如果一个应用有多个 agent，原则上，用户可以为该应用的不同 agent 设置不同的报警策略。然而，这样会影响 Ai 监控应用的整体性能。我们不建议用户这样操作。<br>
+<img src="/images/aisystemset_aialarm02.png" alt="Aisystemset aialarm02" /></p></li>
+</ul>
+
+<p><strong>通知方式：</strong><br></p>
+
+<ul>
+<li>选择通知方式时，可选择邮件、短信的任意组合。默认不进行通知。</li>
+</ul>
+
+<p><strong>通知方式：</strong><br></p>
+
+<ul>
+<li>选择使用当前策略进行通知时，在“用户管理”栏，点击“管理用户”，则会出现账户列表。通过勾选账户，可以使这些账户按照当前报警策略的设置，接收报警通知。（1 个账户，可以同时接收多个策略的报警通知。）</li>
+</ul>
+
+<h1>报警策略-关键事务</h1>
+
+<ul>
+<li><p>在关键事务的报警策略页面，可以设置关键事务的报警策略。当关键事务的性能出现异常时，Ai 会触发报警策略通知用户，使用户能对关键事务的性能进行实时的监控（根据 Apdex、错误率来设置报警阈值）。</p></li>
+<li><p>该页面与应用程序的报警策略页面一样，主要有报警策略、创建报警策略按钮这 2 个部分。</p></li>
+</ul>
+
+<p><strong>报警策略：</strong><br></p>
+
+<ul>
+<li>每一个报警策略，都分为 4 个模块：策略名称;策略操作，包括禁用（禁用后可以启用）、删除、修改等操作;策略报警条件，包括 Apdex 报警阈值、错误率报警阈值; 通知用户，包括需要通知的账号、通知方式。
+<img src="/images/aialarm_keytransaction01.png" alt="Aialarm keytransaction01" /></li>
+</ul>
+
+<p><strong>创建报警策略：</strong><br></p>
+
+<ul>
+<li>点击“创建报警策略”，通过填写策略名称，并且配置报警策略的各项阈值，可增加报警策略。</li>
+<li>关于如何配置报警策略的各项指标，将在后面进行介绍。</li>
+</ul>
+
+<p><strong>关键事务报警策略的设置</strong><br></p>
+
+<ul>
+<li>点击报警策略的“编辑”小图标，会展示当前报警策略的配置窗口。</li>
+</ul>
+
+<p><strong>报警策略：</strong><br></p>
+
+<ul>
+<li>配置报警策略时，除了最开始新增报警策略，不能再修改报警策略的名称。</li>
+<li>配置“严重问题”、“告警问题”、“宕机”三类问题的报警阈值：
+
+<ul>
+<li>告警问题——标黄部分，默认为“当 10 分钟内性能指数低于 0.85，或者 10 分钟内平均错误率高于 1%，则触发告警问题通知”（参数均可以自行调整）</li>
+<li>严重问题——标红部分，默认为“当 5 分钟内性能指数低于 0.7，或者 3 分钟内平均错误率高于 5%，则触发严重问题通知“（参数均可以自行调整）</li>
+<li>宕机—— JVM 停止运行；</li>
+</ul></li>
+</ul>
+
+<p><strong>选择关键事务：</strong><br></p>
+
+<ul>
+<li>选择使用当前策略实现报警的关键事务时，在“关键事务”栏，点击“分配策略”，则会出现关键事务列表。通过勾选，可以使被勾选的关键事务按照当前报警策略的设置，进行问题报警。（1 个关键事务，只能在某一个报警策略中被勾选。在为其他报警策略分配关键事务时，该关键事务不会再出现于列表中。）
+<img src="/images/aialarm_keytransaction02.png" alt="Aialarm keytransaction02" /></li>
+</ul>
+
+<p><strong>通知方式：</strong><br></p>
+
+<ul>
+<li><p>选择通知方式时，可选择邮件、短信的任意组合。默认不进行通知。</p></li>
+<li><p>选择使用当前策略进行通知时，在“用户管理”栏，点击“管理用户”，则会出现账户列表。通过勾选账户，可以使这些账户按照当前报警策略的设置，接收报警通知。 （1 个账户，可以同时接收多个策略的报警通知。）</p></li>
 </ul>
 
             <!--<hr style="margin-top: 50px;" />
