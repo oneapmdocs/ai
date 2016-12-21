@@ -443,21 +443,19 @@
         </div>
         <div class="col-xs-9 page-body">
           <div class="body-box">
-            <h1>部署无数据问题</h1>
-
-<h1>Java</h1>
+            <h1>Java</h1>
 
 <h3>1.如何对指定 jar 包进行监控<br></h3>
 
 <ul>
 <li>在 jar 的启动命令中执行如下命令，即可完成对指定 jar 的监控：</li>
 </ul>
-<pre class="highlight plaintext"><code> java -javaagent: oneapm.jar -jar *.jar
+<pre class="highlight plaintext"><code> java -javaagent:/path/to/oneapm.jar -jar *.jar
 </code></pre>
 <p><strong>注意：</strong></p>
 
 <ul>
-<li><p>-javaagent: 后面跟 oneapm.jar 的绝对路径</p></li>
+<li><p>-javaagent: 后面跟 oneapm.jar 的绝对路径，不能有空格</p></li>
 <li><p>jar 后面跟要监控的 jar 的路径</p></li>
 <li><p>这种方式同时支持，使用 spring boot 内嵌 Web 容器，并将整个应用打包成 jar 包的监控</p></li>
 </ul>
