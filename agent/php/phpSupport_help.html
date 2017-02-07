@@ -498,6 +498,8 @@ PHP 5.5 及以上
 PHP 5.6 及以上
 
 PHP 7.0.9 及以下
+
+不支持 PHP 所有版本的 debug 版
 </code></pre>
 <p>数据库</p>
 <pre class="highlight plaintext"><code>mysql [mysql ， pdo ， mysqli]
@@ -509,10 +511,14 @@ PHP 7.0.9 及以下
 任何用通过 FastCGI 连接 php-fpm （如 Nginx）
 </code></pre>
 <p>明确不支持的框架</p>
-<pre class="highlight plaintext"><code>Yaf
+<pre class="highlight plaintext"><code>Yaf （phalcon 暂不支持）
 </code></pre>
 <p>可以安装的框架</p>
-<pre class="highlight plaintext"><code>所有基于 PHP 语言写的框架都可以安装 PHP-Agent
+<pre class="highlight plaintext"><code>所有基于 PHP 语言写的框架都可以安装 PHP-Agent （对于yaf , phalcon 这种c语言写的 PHP 框架不支持）
+
+PHP 语言写的框架中支持的有 ci、thinkphp、yii、Laravel。
+
+已测试框架有： wordpress ， onethink ， discuz 。
 </code></pre>
 <p>兼容的扩展</p>
 <pre class="highlight plaintext"><code>bz2
