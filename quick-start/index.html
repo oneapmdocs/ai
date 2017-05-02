@@ -384,8 +384,8 @@
       </div>
     </div>
   </div>
-  
- 
+
+
 
   <div class="panel">
     <div class="panel-heading" role="tab" id="headingthree">
@@ -460,11 +460,23 @@
 </script>-->
 <!-- 多说公共JS代码 end -->
 
+<div id='discourse-comments'></div>
+
+<script type="text/javascript">
+  DiscourseEmbed = { discourseUrl: 'http://club.oneapm.com/',
+                     discourseEmbedUrl: 'http://http://docs-ai.oneapm.com/<%= current_page.url %>' };
+
+  (function() {
+    var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+    d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+  })();
+</script>
 
             <div class="return"></div>
           </div>
           <div class="footer-in">
-            
+
           </div>
         </div>
       </div>
